@@ -1,0 +1,46 @@
+{
+  "name": "pieces-b4ai-common",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/pieces/custom/b4ai-common/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ]
+    },
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/packages/pieces/custom/b4ai-common",
+        "tsConfig": "packages/pieces/custom/b4ai-common/tsconfig.lib.json",
+        "packageJson": "packages/pieces/custom/b4ai-common/package.json",
+        "main": "packages/pieces/custom/b4ai-common/src/index.ts",
+        "assets": [
+          "packages/pieces/custom/b4ai-common/*.md"
+        ],
+        "buildableProjectDepsInPackageJsonType": "dependencies",
+        "updateBuildableProjectDepsInPackageJson": true
+      },
+      "dependsOn": [
+        "^build",
+        "prebuild"
+      ]
+    },
+    "prebuild": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/pieces/custom/b4ai-common",
+        "command": "bun install --no-save --silent"
+      },
+      "dependsOn": [
+        "^build"
+      ]
+    }
+  },
+  "tags": []
+}

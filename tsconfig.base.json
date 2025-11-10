@@ -57,7 +57,15 @@
       "@activepieces/piece-housecall-pro": [
         "packages/pieces/community/housecall-pro/src/index.ts"
       ],
-      
+      "@activepieces/piece-b4ai-common": [
+        "packages/pieces/custom/b4ai-common/src/index.ts"
+      ],
+      "@activepieces/piece-b4ai-knowledge": [
+        "packages/pieces/custom/b4ai-knowledge/src/index.ts"
+      ],
+      "@activepieces/piece-b4ai-graph": [
+        "packages/pieces/custom/b4ai-graph/src/index.ts"
+      ]
     },
     "resolveJsonModule": true
   },

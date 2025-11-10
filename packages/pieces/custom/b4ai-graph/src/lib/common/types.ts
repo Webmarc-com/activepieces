@@ -1,0 +1,400 @@
+// Property Data Types
+export type PropertyDataType =
+  | 'NULL'
+  | 'STRING'
+  | 'BOOLEAN'
+  | 'INTEGER'
+  | 'FLOAT'
+  | 'LIST'
+  | 'MAP'
+  | 'DURATION'
+  | 'DATE'
+  | 'LOCAL_TIME'
+  | 'LOCAL_DATE_TIME'
+  | 'ZONED_DATE_TIME'
+  | 'ENUM'
+  | 'POINT'
+  | 'JSON'
+  | 'LONG_TEXT'
+  | 'LINK'
+  | 'FILE';
+
+// Status Types
+export type Status = 'PRODUCTION' | 'DRAFT';
+
+// Filter Operators
+export type FilterOperator =
+  | '='
+  | '!='
+  | '<>'
+  | '>'
+  | '<'
+  | '>='
+  | '<='
+  | 'CONTAINS'
+  | 'STARTS WITH'
+  | 'ENDS WITH'
+  | 'IN'
+  | 'NOT IN'
+  | 'IS NULL'
+  | 'IS NOT NULL';
+
+// Filter Logic Types
+export type FilterLogic = 'AND' | 'OR' | 'NOT' | 'XOR';
+
+// Node Type Models
+export interface GraphNodeType {
+  id: string;
+  name: string;
+  description: string | null;
+  knowledgeHubId: string;
+  memgraphInstanceId: string;
+  status: Status;
+  isPrimary: boolean;
+  isSearchable: boolean;
+  properties: NodeProperty[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateNodeTypeRequest {
+  name: string;
+  description?: string;
+  knowledgeHubId: string;
+  status: Status;
+  isPrimary?: boolean;
+  isSearchable?: boolean;
+  properties?: CreatePropertyRequest[];
+}
+
+export interface UpdateNodeTypeRequest {
+  name?: string;
+  description?: string;
+  isPrimary?: boolean;
+  isSearchable?: boolean;
+}
+
+// Node Property Models
+export interface NodeProperty {
+  id: string;
+  name: string;
+  dataType: PropertyDataType;
+  isRequired: boolean;
+  defaultValue: any;
+  isSearchable: boolean;
+  isEnum: boolean;
+  displayInResults: boolean;
+  nodeTypeId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreatePropertyRequest {
+  name: string;
+  dataType: PropertyDataType;
+  isRequired?: boolean;
+  defaultValue?: any;
+  isSearchable?: boolean;
+  isEnum?: boolean;
+  displayInResults?: boolean;
+}
+
+export interface UpdatePropertyRequest {
+  name?: string;
+  dataType?: PropertyDataType;
+  isRequired?: boolean;
+  defaultValue?: any;
+  isSearchable?: boolean;
+  isEnum?: boolean;
+  displayInResults?: boolean;
+}
+
+// Relationship Type Models
+export interface GraphRelationshipType {
+  id: string;
+  name: string;
+  description: string | null;
+  sourceNodeTypeId: string;
+  targetNodeTypeId: string;
+  knowledgeHubId: string;
+  memgraphInstanceId: string;
+  status: Status;
+  properties: RelationshipProperty[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateRelationshipTypeRequest {
+  name: string;
+  description?: string;
+  sourceNodeTypeId: string;
+  targetNodeTypeId: string;
+  knowledgeHubId: string;
+  status: Status;
+  properties?: CreatePropertyRequest[];
+}
+
+export interface UpdateRelationshipTypeRequest {
+  name?: string;
+  description?: string;
+  sourceNodeTypeId?: string;
+  targetNodeTypeId?: string;
+}
+
+// Relationship Property Models
+export interface RelationshipProperty {
+  id: string;
+  name: string;
+  dataType: PropertyDataType;
+  isRequired: boolean;
+  defaultValue: any;
+  relationshipTypeId: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Record Models
+export interface Record {
+  id: number;
+  nodeTypeId: string;
+  properties: Record<string, any>;
+  relationships?: RecordRelationship[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface RecordRelationship {
+  relationshipId: string;
+  records: Array<{
+    recordId: number;
+    relationshipProperties?: Record<string, any>;
+  }>;
+}
+
+export interface CreateRecordRequest {
+  nodeTypeId: string;
+  properties: Record<string, any>;
+  relationships?: RecordRelationship[];
+}
+
+export interface UpdateRecordRequest {
+  properties?: Record<string, any>;
+  relationships?: RecordRelationship[];
+}
+
+// Filter Models
+export interface Filter {
+  field: string;
+  operator: FilterOperator;
+  value?: any;
+  logic?: FilterLogic;
+  filters?: Filter[];
+}
+
+export interface FilterRequest {
+  nodeTypeId: string;
+  filter: Filter;
+  page?: number;
+  pageSize?: number;
+  orderBy?: string;
+  orderDirection?: 'ASC' | 'DESC';
+}
+
+// Pagination Models
+export interface PaginationParams {
+  page?: number;
+  pageSize?: number;
+  orderBy?: string;
+  orderDirection?: 'ASC' | 'DESC';
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+// Deduplication Models
+export interface DeduplicationConfig {
+  enabled: boolean;
+  fields: string[];
+  similarityThreshold?: number;
+  strategy: 'EXACT' | 'FUZZY' | 'SEMANTIC';
+}
+
+export interface DeduplicationTestResult {
+  duplicates: Array<{
+    recordId: number;
+    matches: Array<{
+      recordId: number;
+      similarity: number;
+      fields: Record<string, any>;
+    }>;
+  }>;
+  totalDuplicates: number;
+}
+
+// Bulk Operation Models
+export interface BulkCreateResponse {
+  created: number;
+  errors: Array<{
+    index: number;
+    error: string;
+  }>;
+}
+
+export interface BulkUpdateResponse {
+  updated: number;
+  errors: Array<{
+    id: string;
+    error: string;
+  }>;
+}
+
+export interface BulkDeleteResponse {
+  deleted: number;
+  errors: Array<{
+    id: string;
+    error: string;
+  }>;
+}
+
+// Graph Node Property (extends NodeProperty)
+export interface GraphNodeProperty extends NodeProperty {}
+
+// Graph Relationship Property (extends RelationshipProperty)
+export interface GraphRelationshipProperty extends RelationshipProperty {}
+
+// Node Property Request Types
+export interface CreateNodePropertyRequest extends CreatePropertyRequest {
+  nodeTypeId: string;
+  isUnique?: boolean;
+  isIndexed?: boolean;
+  validationRules?: any;
+}
+
+export interface UpdateNodePropertyRequest {
+  name?: string;
+  isRequired?: boolean;
+  isUnique?: boolean;
+  isIndexed?: boolean;
+  defaultValue?: any;
+  validationRules?: any;
+}
+
+// Relationship Property Request Types
+export interface CreateRelationshipPropertyRequest extends CreatePropertyRequest {
+  relationshipTypeId: string;
+  isUnique?: boolean;
+  isIndexed?: boolean;
+  validationRules?: any;
+}
+
+export interface UpdateRelationshipPropertyRequest {
+  name?: string;
+  isRequired?: boolean;
+  isUnique?: boolean;
+  isIndexed?: boolean;
+  defaultValue?: any;
+  validationRules?: any;
+}
+
+// Graph Node (extends Record)
+export interface GraphNode extends Record {}
+
+// Node Request Types
+export interface CreateNodeRequest {
+  nodeTypeId: string;
+  properties: Record<string, any>;
+}
+
+export interface UpdateNodeRequest {
+  properties: Record<string, any>;
+}
+
+// Graph Relationship
+export interface GraphRelationship {
+  id: string;
+  relationshipTypeId: string;
+  sourceNodeId: string;
+  targetNodeId: string;
+  properties: Record<string, any>;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Relationship Request Types
+export interface CreateRelationshipRequest {
+  relationshipTypeId: string;
+  sourceNodeId: string;
+  targetNodeId: string;
+  properties?: Record<string, any>;
+}
+
+export interface UpdateRelationshipRequest {
+  properties: Record<string, any>;
+}
+
+// Deduplication Extended Types
+export interface DuplicateGroup {
+  nodes: GraphNode[];
+  similarity: number;
+  matchedFields: string[];
+}
+
+export interface FindDuplicatesResponse {
+  duplicateGroups: DuplicateGroup[];
+  totalGroups: number;
+}
+
+export interface MergeNodesRequest {
+  nodeIds: any[];
+  mergeStrategy: 'prefer_first' | 'prefer_non_empty' | 'prefer_latest' | 'concatenate';
+  keepRelationships: boolean;
+}
+
+export interface DedupRule {
+  id: string;
+  name: string;
+  nodeTypeId: string;
+  matchFields: string[];
+  similarityThreshold: number;
+  autoMerge: boolean;
+  mergeStrategy: 'prefer_first' | 'prefer_non_empty' | 'prefer_latest' | 'concatenate';
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateDedupRuleRequest {
+  name: string;
+  nodeTypeId: string;
+  matchFields: any[];
+  similarityThreshold: number;
+  autoMerge: boolean;
+  mergeStrategy: 'prefer_first' | 'prefer_non_empty' | 'prefer_latest' | 'concatenate';
+  isActive: boolean;
+}
+
+export interface UpdateDedupRuleRequest {
+  name?: string;
+  matchFields?: any[];
+  similarityThreshold?: number;
+  autoMerge?: boolean;
+  mergeStrategy?: 'prefer_first' | 'prefer_non_empty' | 'prefer_latest' | 'concatenate';
+  isActive?: boolean;
+}
+
+export interface RunDedupRuleResponse {
+  duplicateGroups: number;
+  mergedCount: number;
+}
+
+// API Response Models
+export interface ApiResponse<T = any> {
+  success?: boolean;
+  message?: string;
+  data?: T;
+}
