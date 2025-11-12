@@ -17,6 +17,8 @@ steps:
       - 'Dockerfile'
       - '.'
     timeout: '1800s'  # 30 minutes - Activepieces build can take time
+    env:
+      - 'DOCKER_BUILDKIT=1'
 
   # Step 3: Push the Docker image to the 'surfsite-staging' repository
   - name: 'gcr.io/cloud-builders/docker'

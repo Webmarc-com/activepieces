@@ -66,12 +66,12 @@ import { updateDedupRule } from './lib/actions/deduplication/update-dedup-rule';
 import { deleteDedupRule } from './lib/actions/deduplication/delete-dedup-rule';
 import { runDedupRule } from './lib/actions/deduplication/run-dedup-rule';
 
-export const b4aiGraph = createPiece({
-  displayName: 'B4AI Graph Database',
+export const b4aiMemory = createPiece({
+  displayName: 'B4AI Memory',
   description: 'Schema-first graph database for managing nodes, relationships, and intelligent deduplication',
   auth: graphAuth,
   minimumSupportedRelease: '0.30.0',
-  logoUrl: 'https://cdn.activepieces.com/pieces/b4ai.png',
+  logoUrl: 'logo_black.svg',
   authors: ['B4AI Team'],
   categories: [PieceCategory.BUSINESS_INTELLIGENCE, PieceCategory.DEVELOPER_TOOLS],
   actions: [
