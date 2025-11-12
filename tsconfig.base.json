@@ -60,11 +60,11 @@
       "@activepieces/piece-b4ai-common": [
         "packages/pieces/custom/b4ai-common/src/index.ts"
       ],
-      "@activepieces/piece-b4ai-knowledge": [
-        "packages/pieces/custom/b4ai-knowledge/src/index.ts"
+      "@activepieces/piece-b4ai-hub": [
+        "packages/pieces/custom/b4ai-hub/src/index.ts"
       ],
-      "@activepieces/piece-b4ai-graph": [
-        "packages/pieces/custom/b4ai-graph/src/index.ts"
+      "@activepieces/piece-b4ai-memory": [
+        "packages/pieces/custom/b4ai-memory/src/index.ts"
       ]
     },
     "resolveJsonModule": true
