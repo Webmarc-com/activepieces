@@ -96,6 +96,7 @@ for piece_dir in "${PIECES_DIR}"/*; do
         -F "pieceArchive=@${tar_file}" \
         -F "packageType=ARCHIVE" \
         -F "pieceType=CUSTOM" \
+        -F "scope=PLATFORM" \
         -w "\n%{http_code}" \
         -s 2>/dev/null || echo "000")
 
