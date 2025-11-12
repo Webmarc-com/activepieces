@@ -5,6 +5,9 @@ import { graphApiCall } from '../../common/client';
 import { API_ENDPOINTS } from '../../common/constants';
 import { GraphRelationship, PaginatedResponse } from '../../common/types';
 
+// NOTE: This action needs refactoring. According to GRAPH_API.md, relationships are queried
+// by fetching node records with includeRelationships: true via POST /api/node-type-records/filter.
+// There is no separate /relationships/query endpoint.
 export const queryRelationships = createAction({
   auth: graphAuth,
   name: 'query_relationships',
@@ -79,7 +82,7 @@ export const queryRelationships = createAction({
     if (sortBy) queryParams.append('sortBy', sortBy);
     if (sortOrder) queryParams.append('sortOrder', sortOrder);
 
-    let endpoint = API_ENDPOINTS.RELATIONSHIPS_QUERY;
+    let endpoint: string = API_ENDPOINTS.RELATIONSHIPS_QUERY;
     if (queryParams.toString()) {
       endpoint = `${endpoint}?${queryParams.toString()}`;
     }

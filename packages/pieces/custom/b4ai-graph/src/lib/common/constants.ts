@@ -20,7 +20,7 @@ export const API_ENDPOINTS = {
   RELATIONSHIP_PROPERTY_BY_ID: (id: string) => `/graph-relationship-property/${id}`,
   RELATIONSHIP_PROPERTIES_BULK: '/graph-relationship-property/bulk',
 
-  // Records
+  // Records (Node operations)
   RECORDS: '/node-type-records',
   RECORDS_FILTER: '/node-type-records/filter',
   RECORDS_BULK: '/node-type-records/bulk',
@@ -33,6 +33,18 @@ export const API_ENDPOINTS = {
   DEDUPLICATION_TEST: (nodeTypeId: string) => `/graph-node-types/${nodeTypeId}/deduplication/test`,
   DEDUPLICATION_TRIGGER: (nodeTypeId: string) => `/graph-node-types/${nodeTypeId}/deduplication/trigger`,
   EMBEDDINGS_REGENERATE: (nodeTypeId: string) => `/graph-node-types/${nodeTypeId}/embeddings/regenerate`,
+
+  // Dedup Rules
+  DEDUP_RULES: '/dedup-rules',
+  DEDUP_RULE_BY_ID: (ruleId: string) => `/dedup-rules/${ruleId}`,
+  DEDUP_FIND: '/dedup-rules/find',
+  DEDUP_RUN: (ruleId: string) => `/dedup-rules/${ruleId}/run`,
+  DEDUP_MERGE: '/dedup-rules/merge',
+
+  // Relationships (Records)
+  RELATIONSHIPS: '/graph-relationships',
+  RELATIONSHIP_BY_ID: (id: string) => `/graph-relationships/${id}`,
+  RELATIONSHIPS_QUERY: '/graph-relationships/query',
 } as const;
 
 // Property Data Types for dropdown

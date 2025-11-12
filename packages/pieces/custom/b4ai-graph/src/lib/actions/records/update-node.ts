@@ -11,9 +11,14 @@ export const updateNode = createAction({
   displayName: 'Update Node',
   description: 'Update a node\'s properties',
   props: {
-    nodeId: Property.ShortText({
-      displayName: 'Node ID',
-      description: 'The ID (UUID) of the node to update',
+    nodeTypeId: Property.ShortText({
+      displayName: 'Node Type ID',
+      description: 'The ID (UUID) of the node type',
+      required: true,
+    }),
+    recordId: Property.Number({
+      displayName: 'Record ID',
+      description: 'The numeric ID of the node record to update',
       required: true,
     }),
     properties: Property.Json({
@@ -21,17 +26,28 @@ export const updateNode = createAction({
       description: 'JSON object with property names and new values',
       required: true,
     }),
+    relationships: Property.Json({
+      displayName: 'Relationships',
+      description: 'Optional array of relationship operations. Format: [{ operation: "add"|"remove", relationshipId: "uuid", records: [{ recordId: number, relationshipProperties?: {...} }] }]',
+      required: false,
+    }),
   },
   async run(context) {
-    const { nodeId, properties } = context.propsValue;
+    const { nodeTypeId, recordId, properties, relationships } = context.propsValue;
 
-    const body: UpdateNodeRequest = {
+    const body: any = {
+      nodeTypeId,
+      recordId,
       properties,
     };
 
+    if (relationships) {
+      body.relationships = relationships;
+    }
+
     const response = await graphApiCall<GraphNode>({
       method: HttpMethod.PUT,
-      endpoint: API_ENDPOINTS.NODE_BY_ID(nodeId),
+      endpoint: API_ENDPOINTS.RECORDS,
       auth: context.auth as any,
       body,
     });

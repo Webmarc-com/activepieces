@@ -5,6 +5,9 @@ import { graphApiCall } from '../../common/client';
 import { API_ENDPOINTS } from '../../common/constants';
 import { GraphRelationship, CreateRelationshipRequest } from '../../common/types';
 
+// NOTE: This action needs refactoring. According to GRAPH_API.md, relationships are managed
+// through the node-type-records API, not via separate /relationships endpoints.
+// Relationships should be added/removed via PUT /api/node-type-records with relationship operations.
 export const createRelationship = createAction({
   auth: graphAuth,
   name: 'create_relationship',

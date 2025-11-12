@@ -53,6 +53,9 @@ import { createRelationship } from './lib/actions/records/create-relationship';
 import { updateRelationship } from './lib/actions/records/update-relationship';
 import { deleteRelationship } from './lib/actions/records/delete-relationship';
 import { queryRelationships } from './lib/actions/records/query-relationships';
+import { bulkCreateNodes } from './lib/actions/records/bulk-create-nodes';
+import { bulkUpdateNodes } from './lib/actions/records/bulk-update-nodes';
+import { bulkDeleteNodes } from './lib/actions/records/bulk-delete-nodes';
 
 // Deduplication
 import { findDuplicates } from './lib/actions/deduplication/find-duplicates';
@@ -112,12 +115,15 @@ export const b4aiGraph = createPiece({
     bulkUpdateRelationshipProperties,
     bulkDeleteRelationshipProperties,
 
-    // Record Management (9)
+    // Record Management (12)
     queryNodes,
     getNode,
     createNode,
     updateNode,
     deleteNode,
+    bulkCreateNodes,
+    bulkUpdateNodes,
+    bulkDeleteNodes,
     createRelationship,
     updateRelationship,
     deleteRelationship,

@@ -137,7 +137,7 @@ export function createWebSearchTool(provider: string, options: WebSearchOptions 
                     ...spreadIfDefined('userLocation', buildUserLocation(anthropicOptions)),
                     ...spreadIfDefined('allowedDomains', allowedDomains),
                     ...spreadIfDefined('blockedDomains', blockedDomains),
-                }),
+                }) as any,
             }
         }
 
@@ -149,7 +149,7 @@ export function createWebSearchTool(provider: string, options: WebSearchOptions 
                 web_search_preview: openaiProvider.tools.webSearchPreview({
                     ...spreadIfDefined('searchContextSize', openaiOptions.searchContextSize),
                     ...spreadIfDefined('userLocation', buildUserLocation(openaiOptions)),
-                }),
+                }) as any,
             }
         }
 
@@ -157,7 +157,7 @@ export function createWebSearchTool(provider: string, options: WebSearchOptions 
             const googleProvider = createGoogleGenerativeAI({})
 
             return {
-                google_search: googleProvider.tools.googleSearch({}),
+                google_search: googleProvider.tools.googleSearch({}) as any,
             }
         }
 

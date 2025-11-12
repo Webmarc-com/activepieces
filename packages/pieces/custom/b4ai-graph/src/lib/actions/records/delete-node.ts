@@ -10,24 +10,33 @@ export const deleteNode = createAction({
   displayName: 'Delete Node',
   description: 'Delete a node and all its relationships',
   props: {
-    nodeId: Property.ShortText({
-      displayName: 'Node ID',
-      description: 'The ID (UUID) of the node to delete',
+    nodeTypeId: Property.ShortText({
+      displayName: 'Node Type ID',
+      description: 'The ID (UUID) of the node type',
+      required: true,
+    }),
+    recordId: Property.Number({
+      displayName: 'Record ID',
+      description: 'The numeric ID of the node record to delete',
       required: true,
     }),
   },
   async run(context) {
-    const { nodeId } = context.propsValue;
+    const { nodeTypeId, recordId } = context.propsValue;
 
     await graphApiCall({
       method: HttpMethod.DELETE,
-      endpoint: API_ENDPOINTS.NODE_BY_ID(nodeId),
+      endpoint: API_ENDPOINTS.RECORDS,
       auth: context.auth as any,
+      body: {
+        nodeTypeId,
+        recordId,
+      },
     });
 
     return {
       success: true,
-      message: `Node ${nodeId} and all its relationships deleted successfully`,
+      message: `Node record ${recordId} and all its relationships deleted successfully`,
       warning: 'This action is irreversible.',
     };
   },

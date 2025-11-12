@@ -16,15 +16,33 @@ export const bulkCreateRelationshipTypes = createAction({
       description: 'Array of relationship type objects to create',
       required: true,
     }),
+    defaultStatus: Property.StaticDropdown({
+      displayName: 'Default Status',
+      description: 'Default status for relationship types that do not specify their own status',
+      required: false,
+      defaultValue: 'DRAFT',
+      options: {
+        options: [
+          { label: 'Production', value: 'PRODUCTION' },
+          { label: 'Draft', value: 'DRAFT' },
+        ],
+      },
+    }),
   },
   async run(context) {
-    const { relationshipTypes } = context.propsValue;
+    const { relationshipTypes, defaultStatus } = context.propsValue;
+
+    // Apply default status to items that don't have one
+    const relationshipTypesWithStatus = (relationshipTypes as any[]).map((relationshipType: any) => ({
+      ...relationshipType,
+      status: relationshipType.status || defaultStatus || 'DRAFT',
+    }));
 
     const response = await graphApiCall<BulkCreateResponse>({
       method: HttpMethod.POST,
       endpoint: API_ENDPOINTS.RELATIONSHIP_TYPES_BULK,
       auth: context.auth as any,
-      body: relationshipTypes,
+      body: relationshipTypesWithStatus,
     });
 
     return {

@@ -1,0 +1,619 @@
+
+> activepieces@0.71.2 dev:backend
+> concurrently -n "API,ENG" -c "bgGreen.bold,bgRed.bold" "npm:serve:backend" "npm:serve:engine"
+
+[ENG] 
+[ENG] > activepieces@0.71.2 serve:engine
+[ENG] > nx serve engine
+[ENG] 
+[API] 
+[API] > activepieces@0.71.2 serve:backend
+[API] > nx serve server-api
+[API] 
+[ENG] 
+[ENG] > nx run engine:serve
+[ENG] 
+[API] 
+[API] > nx run server-api:serve
+[API] 
+[API] [0m[7m[1m[33m NX [39m[22m[27m[0m  [33mNx Daemon is not enabled. Assets will not be updated when they are changed.[39m
+[API] [2m../../../dist/packages/server/api/packages/server/api/README.md[22m
+[API] [1m[33mBun lockfile generation is unsupported. Remove "generateLockfile" option or set it to false.[39m[22m
+[ENG] chunk (runtime: main) [1m[32mmain.js[39m[22m (main) 2.02 MiB (javascript) 670 bytes (runtime) [1m[33m[entry][39m[22m [1m[32m[rendered][39m[22m
+[ENG] webpack compiled [1m[32msuccessfully[39m[22m (8eda65c717b52b70)
+[ENG] [7m[1m[36m NX [39m[22m[27m [1mProcess exited with code 0, waiting for changes to restart...[22m
+[API] [ [32mwatch[39m ] build succeeded, watching for changes...
+[API] [1m[31mDebugger listening on ws://0.0.0.0:9229/eb76a6f8-8318-4a4d-be85-4f1f2810ae83[39m[22m
+[API] [1m[31mFor help, see: https://nodejs.org/en/docs/inspector[39m[22m
+[API] [1m[31m[39m[22m
+[API] [15:03:28 UTC] [32mINFO[39m (InitialSql3Migration1690195839899): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mAddAppConnectionTypeToTopLevel1691706020626 up[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mAddAppConnectionTypeToTopLevel1691706020626 finished[39m
+[API] [15:03:28 UTC] [32mINFO[39m (FileTypeCompression1694695212159): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddPieceTypeAndPackageTypeToPieceMetadata1696016228398): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mAddPieceTypeAndPackageTypeToFlowVersion1696245170061: found 0 versions[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mAddPieceTypeAndPackageTypeToFlowVersion1696245170061: up[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddArchiveIdToPieceMetadata1696956123632): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mStoreCodeInsideFlow1697969398200: up finished[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddPlatformToProject1698078715730): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddPlatformToProject1698078715730): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddExternalIdSqlite1698857968495): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mUpdateUserStatusRenameShadowToInvited1699818680567 up[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mAddPartialUniqueIndexForEmailAndPlatformIdIsNull1701096458822 up[39m
+[API] [15:03:28 UTC] [32mINFO[39m (RemoveFlowInstanceSqlite1702412280963): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mRemoveFlowInstanceSqlite1702412280963 up[39m
+[API] [15:03:28 UTC] [32mINFO[39m (UpdateStatusInUserSqlite1703713027818): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (RenameAppNameToPieceNameSqlite1703713475755): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddTriggerTestStrategy1707087022764): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (CreateDefaultPlaformSqlite1709051625110): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mCreateDefaultPlatform1705967115116 up[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mFound 0 standalone projects[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mCreateDefaultPlatform1705967115116 up done[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddPlatformForeignKeyToProjectSqlite1709566629593): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddPlatformForeignKeyToProjectSqlite1709566629593): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mMigrateWebhook1709581196563, started[39m
+[API] [15:03:28 UTC] [32mINFO[39m: [36mMigrateWebhook1709581196563, migrated flows 0[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddDeletedToProjectSqlite1710248182409): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddDeletedToProjectSqlite1710248182409): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddUniqueNameToFolderSqlite1713645171373): [36mUp[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddAlertsEntitySqlite1717239613259): [36mup[39m
+[API] [15:03:28 UTC] [32mINFO[39m (AddAlertsEntitySqlite1717239613259): [36mCreateAlerts1717239613259 Migrated 0 alerts[39m
+[API] [15:03:29 UTC] [32mINFO[39m (RemoveUniqueConstraintOnStepFile1725570317713): [36mup[39m
+[API] [15:03:29 UTC] [32mINFO[39m (ChangeProjectUniqueConstraintToPartialIndex1729098769827): [36mUp[39m
+[API] [15:03:29 UTC] [32mINFO[39m (MigrateSMTPInPlatformSqlite1729601402320): [36mup[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mSwitchToRouter1731019013340: found 0 versions[39m
+[API] [15:03:29 UTC] [32mINFO[39m (SwitchToRouter1731019013340: up):
+[API]     updatedFlows: 0
+[API] [15:03:29 UTC] [32mINFO[39m (StoreTriggerEventsInFileSqlite1731247180217): [36mup[39m
+[API] [15:03:29 UTC] [32mINFO[39m (MigrateConnectionNamesSqlite1731443310900): [36mup[39m
+[API] [15:03:29 UTC] [32mINFO[39m (AddGlobalConnectionsAndRbacForPlatformSqlite1731604290560): [36mup[39m
+[API] [15:03:29 UTC] [32mINFO[39m (AddProjectRelationInUserInvitationSqlite1732791068873): [36mup[39m
+[API] [15:03:29 UTC] [32mINFO[39m (AddUserIdentitySqlite1735602676499): [36mStarting migration[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mChangeExternalIdsForTables1747346473001: found 0 versions[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mChangeExternalIdsForTables1747346473001: up[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mChangeExternalIdsForTables1747346473000: migration already ran[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mMigration AddMcpToolEntitySQLITE1748365593414 completed successfully. Added 0 MCP piece tools and 0 MCP flow tools[39m
+[API] [15:03:29 UTC] [32mINFO[39m (DeprecateApproval1748648340742): [36mup[39m
+[API] [15:03:29 UTC] [32mINFO[39m (DeprecateApproval1748648340742): [36mdown[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mAIProviderRefactorSqlite1748824241409 up: started[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mCreated backup table ai_provider_backup[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mMigration completed successfully: 0 providers migrated, 0 errors[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mDropped backup table after successful migration[39m
+[API] [15:03:29 UTC] [32mINFO[39m: [36mAIProviderRefactorSqlite1748824241409 up: finished[39m
+[API] [15:03:29 UTC] [32mINFO[39m (SplitUpPieceMetadataIntoTools1752004202722): [36mStarting migration[39m
+[API] [15:03:29 UTC] [32mINFO[39m (SplitUpPieceMetadataIntoTools1752004202722): [36mfinished[39m
+[API] [15:03:30 UTC] [32mINFO[39m (insertScheduleFromFlowsMigration):
+[API]     message: "fetched total flows"
+[API]     total: 0
+[API] [15:03:30 UTC] [32mINFO[39m (rolesSeed): [36mSeeding roles[39m
+[API] [15:03:30 UTC] [32mINFO[39m: [36mCreating user identity[39m
+[API]     email: "dev@ap.com"
+[API] [15:03:30 UTC] [32mINFO[39m (seedDevUser): [36memail=dev@ap.com pass=12345678[39m
+[API] [15:03:30 UTC] [32mINFO[39m (SystemJob#upsertJob): [36mUpserting job[39m
+[API]     jobName: "file-cleanup-trigger"
+[API] [15:03:30 UTC] [32mINFO[39m (SystemJob#upsertJob): [36mAdding job to queue[39m
+[API]     jobName: "file-cleanup-trigger"
+[API] [15:03:30 UTC] [32mINFO[39m (SystemJob#upsertJob): [36mUpserting job[39m
+[API]     jobName: "run-telemetry"
+[API] [15:03:30 UTC] [32mINFO[39m (SystemJob#upsertJob): [36mAdding job to queue[39m
+[API]     jobName: "run-telemetry"
+[API] [15:03:30 UTC] [32mINFO[39m: [36m[engineResponseWatcher#init] Initializing engine run watcher[39m
+[API] [15:03:30 UTC] [32mINFO[39m: [36mPiece sync service is disabled[39m
+[API] [15:03:30 UTC] [32mINFO[39m: [36m[jobQueue#ensureQueueExists] Queue created[39m
+[API]     queueName: "workerJobs"
+[API] [15:03:30 UTC] [32mINFO[39m: [36m[jobQueue#init] Dynamic queue system initialized[39m
+[API] [15:03:30 UTC] [32mINFO[39m: [36m[setupBullMQBoard] Queue UI is disabled[39m
+[API] [15:03:30 UTC] [32mINFO[39m (SystemJob#upsertJob): [36mUpserting job[39m
+[API]     jobName: "trial-tracker"
+[API] [15:03:30 UTC] [32mINFO[39m (SystemJob#upsertJob): [36mAdding job to queue[39m
+[API]     jobName: "trial-tracker"
+[API] [15:03:31 UTC] [32mINFO[39m: [36mActivepieces Edition[39m
+[API]     edition: "ce"
+[API] [1m[31m[0m[2m[[1m0.04ms[0m[2m][0m [2m".env"[0m[39m[22m
+[API] [1m[31m[39m[22m
+[API] [0m[1mbun add [0m[2mv1.3.1 (89fa0f34)[0m
+[API] [1m[31mResolving dependencies[39m[22m
+[API] [1m[31m[39m[22m
+[API] [15:03:36 UTC] [32mINFO[39m: [36m[33mInstalling Pieces Dependencies: csv-parse@5.6.0 googleapis@129.0.0 lodash@4.17.21 tslib@^2.3.0 pg@8.11.3 pg-format@1.0.4 promise-mysql@5.2.0 sqlstring@2.3.3 mongodb@6.15.0 oracledb@^6.10.0[36m[39m
+[API] [1m[31mResolved, downloaded and extracted [35][39m[22m
+[API] [1m[31m[39m[22m
+[API] [1m[31m[39m[22m
+[API] [1m[31m[39m[22m
+[API] [1m[31m[0m[2m[35m$[0m [2m[1mhusky install[0m[39m[22m
+[API] [1m[31m[39m[22m
+[API] husky - Git hooks installed
+[API] [0m[32minstalled[0m [1mcsv-parse[0m[2m@5.6.0[0m
+[API] [0m[32minstalled[0m [1mgoogleapis[0m[2m@129.0.0[0m
+[API] [0m[32minstalled[0m [1mlodash[0m[2m@4.17.21[0m
+[API] [0m[32minstalled[0m [1mtslib[0m[2m@2.8.1[0m
+[API] [0m[32minstalled[0m [1mpg[0m[2m@8.11.3[0m
+[API] [0m[32minstalled[0m [1mpg-format[0m[2m@1.0.4[0m
+[API] [0m[32minstalled[0m [1mpromise-mysql[0m[2m@5.2.0[0m
+[API] [0m[32minstalled[0m [1msqlstring[0m[2m@2.3.3[0m
+[API] [0m[32minstalled[0m [1mmongodb[0m[2m@6.15.0[0m
+[API] [0m[32minstalled[0m [1moracledb[0m[2m@6.10.0[0m
+[API] [0m[2m[[1m967.00ms[0m[2m][0m[2m done[0m
+[API] [15:03:37 UTC] [32mINFO[39m: [36m[34mStarting watch for package: google-sheets[36m[39m
+[API] [15:03:38 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/community/google-sheets[36m[39m
+[API] [15:03:38 UTC] [32mINFO[39m: [36m[34mStarting watch for package: store[36m[39m
+[API] [15:03:38 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/community/store[36m[39m
+[API] [15:03:38 UTC] [32mINFO[39m: [36m[34mStarting watch for package: b4ai-graph[36m[39m
+[API] [15:03:39 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/custom/b4ai-graph[36m[39m
+[API] [15:03:39 UTC] [32mINFO[39m: [36m[34mStarting watch for package: b4ai-knowledge[36m[39m
+[API] [15:03:39 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/custom/b4ai-knowledge[36m[39m
+[API] [15:03:39 UTC] [32mINFO[39m: [36m[34mStarting watch for package: postgres[36m[39m
+[API] [15:03:39 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/community/postgres[36m[39m
+[API] [15:03:39 UTC] [32mINFO[39m: [36m[34mStarting watch for package: mysql[36m[39m
+[API] [15:03:40 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-google-sheets[22m[36m[39m
+[API] [15:03:40 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-google-sheets... 🤌[22m[36m[39m
+[API] [15:03:40 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/community/mysql[36m[39m
+[API] [15:03:40 UTC] [32mINFO[39m: [36m[34mStarting watch for package: mongodb[36m[39m
+[API] [15:03:40 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-store[22m[36m[39m
+[API] [15:03:41 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-b4ai-graph[22m[36m[39m
+[API] [15:03:41 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/community/mongodb[36m[39m
+[API] [15:03:41 UTC] [32mINFO[39m: [36m[34mStarting watch for package: oracle-database[36m[39m
+[API] [15:03:41 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-b4ai-knowledge[22m[36m[39m
+[API] [15:03:41 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-postgres[22m[36m[39m
+[API] [15:03:42 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/community/oracle-database[36m[39m
+[API] [15:03:42 UTC] [32mINFO[39m: [36m[34mStarting watch for package: surrealdb[36m[39m
+[API] [15:03:42 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-mysql[22m[36m[39m
+[API] [15:03:42 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/community/surrealdb[36m[39m
+[API] [15:03:42 UTC] [32mINFO[39m: [36m[34mStarting watch for package: nocodb[36m[39m
+[API] [15:03:43 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-mongodb[22m[36m[39m
+[API] [15:03:44 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-oracle-database[22m[36m[39m
+[API] [15:03:44 UTC] [32mINFO[39m: [36m[33mFound piece directory: /home/razvan-duican/B4AI/activepieces/packages/pieces/community/nocodb[36m[39m
+[API] [15:03:45 UTC] [33mWARN[39m: [36m@fastify/reply-from might not behave as expected when used with @fastify/multipart[39m
+[API] [15:03:45 UTC] [32mINFO[39m: [36mServer listening at http://127.0.0.1:3000[39m
+[API] [15:03:45 UTC] [32mINFO[39m: [36mServer listening at http://192.168.1.137:3000[39m
+[API] [15:03:45 UTC] [32mINFO[39m: [36mServer listening at http://172.19.0.1:3000[39m
+[API] [15:03:45 UTC] [32mINFO[39m: [36m
+[API]              _____   _______   _____  __      __  ______   _____    _____   ______    _____   ______    _____
+[API]     /\      / ____| |__   __| |_   _| \ \    / / |  ____| |  __ \  |_   _| |  ____|  / ____| |  ____|  / ____|
+[API]    /  \    | |         | |      | |    \ \  / /  | |__    | |__) |   | |   | |__    | |      | |__    | (___
+[API]   / /\ \   | |         | |      | |     \ \/ /   |  __|   |  ___/    | |   |  __|   | |      |  __|    \___ \
+[API]  / ____ \  | |____     | |     _| |_     \  /    | |____  | |       _| |_  | |____  | |____  | |____   ____) |
+[API] /_/    \_\  \_____|    |_|    |_____|     \/     |______| |_|      |_____| |______|  \_____| |______| |_____/
+[API] The application started on http://localhost:4200/api/, as specified by the AP_FRONTEND_URL variables.[39m
+[API] [15:03:45 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-surrealdb[22m[36m[39m
+[API] [15:03:45 UTC] [32mINFO[39m: [36m[pollingJobsMigration] Migrated polling jobs[39m
+[API]     migratedPollingJobs: 0
+[API] [15:03:45 UTC] [32mINFO[39m:
+[API]     message: "Worker connected"
+[API]     workerId: "Av4WZsMfo6Uo15Uu0ICmA"
+[API] [15:03:45 UTC] [32mINFO[39m:
+[API]     message: "Connected to server"
+[API]     workerId: "Av4WZsMfo6Uo15Uu0ICmA"
+[API]     socketId: "tw8BxGCWJFXVdxHfAAAB"
+[API] [15:03:45 UTC] [32mINFO[39m: [36m[renewWebhookJobsMigration] Migrated renew webhook jobs[39m
+[API]     migratedRenewWebhookJobs: 0
+[API] [15:03:45 UTC] [32mINFO[39m:
+[API]     message: "Job queue worker started"
+[API] [15:03:45 UTC] [32mINFO[39m: [36m[flowWorker#init][39m
+[API]     message: "Initialized runs metadata queue for worker"
+[API] [15:03:45 UTC] [32mINFO[39m: [36m[unifyOldQueuesIntoOne] Migration completed and marked as done[39m
+[API] [15:03:45 UTC] [32mINFO[39m: [36m[refillPausedRuns] Finding paused runs to migrate[39m
+[API] [15:03:45 UTC] [32mINFO[39m: [36m[refillPausedRuns] Found paused runs to migrate[39m
+[API]     count: 0
+[API] [15:03:45 UTC] [32mINFO[39m: [36m[pausedRunsMigration] Migrated paused runs[39m
+[API]     count: 0
+[API] [15:03:45 UTC] [32mINFO[39m: [36mQueues migrated and consumers run[39m
+[API] [15:03:45 UTC] [33mWARN[39m: [36m[WARNING]: Pieces will be loaded from source type FILE[39m
+[API] [15:03:45 UTC] [33mWARN[39m: [36m[WARNING]: The application is running in dev mode.[39m
+[API] [15:03:45 UTC] [33mWARN[39m: [36m[WARNING]: This is only shows pieces specified in AP_DEV_PIECES google-sheets,store,b4ai-graph,b4ai-knowledge,postgres,mysql,mongodb,oracle-database,surrealdb,nocodb environment variable.[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-google-sheets and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-google-sheets
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-google-sheets:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-google-sheets:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-google-sheets"...
+[API] Done compiling TypeScript files for project "pieces-google-sheets".
+[API] [2m../../../../dist/packages/pieces/community/google-sheets/README.md[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/ar.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/bg.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/ca.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/de.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/es.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/fr.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/hi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/hu.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/hy.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/id.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/it.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/ja.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/ko.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/nl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/pl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/pt.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/ru.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/sv.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/translation.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/uk.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/vi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/google-sheets/src/i18n/zh.json[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-google-sheets and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:03:47 UTC] [32mINFO[39m: [36m[94m[1m👀 Detected changes in pieces. Waiting... 👀 pieces-nocodb[22m[36m[39m
+[API] [15:03:48 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 8.40 seconds[22m[36m[39m
+[API] [15:03:48 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:03:48 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-store... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-store and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-store
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-store:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-store:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-store"...
+[API] Done compiling TypeScript files for project "pieces-store".
+[API] [2m../../../../dist/packages/pieces/community/store/README.md[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/ar.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/bg.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/ca.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/de.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/es.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/fr.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/hi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/hu.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/hy.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/id.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/it.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/ja.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/ko.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/nl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/pl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/pt.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/ru.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/sv.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/translation.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/uk.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/vi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/store/src/i18n/zh.json[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-store and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:03:57 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 8.86 seconds[22m[36m[39m
+[API] [15:03:57 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:03:57 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-b4ai-graph... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-b4ai-graph and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-b4ai-graph
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-b4ai-graph:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-b4ai-graph:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-b4ai-graph"...
+[API] Done compiling TypeScript files for project "pieces-b4ai-graph".
+[API] [2m../../../../dist/packages/pieces/custom/b4ai-graph/GRAPH_API.md[22m
+[API] [2m../../../../dist/packages/pieces/custom/b4ai-graph/README.md[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-b4ai-graph and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:04:05 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 7.93 seconds[22m[36m[39m
+[API] [15:04:05 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:04:05 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-b4ai-knowledge... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-b4ai-knowledge and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-b4ai-knowledge
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-b4ai-knowledge:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-b4ai-knowledge:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-b4ai-knowledge"...
+[API] Done compiling TypeScript files for project "pieces-b4ai-knowledge".
+[API] [2m../../../../dist/packages/pieces/custom/b4ai-knowledge/packages/pieces/custom/b4ai-knowledge/KNOWLEDGE_HUB_API.md[22m
+[API] [2m../../../../dist/packages/pieces/custom/b4ai-knowledge/packages/pieces/custom/b4ai-knowledge/README.md[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-b4ai-knowledge and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:04:13 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 8.03 seconds[22m[36m[39m
+[API] [15:04:13 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:04:13 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-postgres... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-postgres and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-postgres
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-postgres:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-postgres:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-postgres"...
+[API] Done compiling TypeScript files for project "pieces-postgres".
+[API] [2m../../../../dist/packages/pieces/community/postgres/README.md[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/ca.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/de.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/es.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/fr.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/hi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/id.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/ja.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/nl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/pt.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/ru.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/translation.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/vi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/postgres/src/i18n/zh.json[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-postgres and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:04:22 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 8.91 seconds[22m[36m[39m
+[API] [15:04:22 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:04:22 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-mysql... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-mysql and [1m4[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-mysql
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-mysql:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-mysql:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-mysql"...
+[API] Done compiling TypeScript files for project "pieces-mysql".
+[API] [2m../../../../dist/packages/pieces/community/mysql/README.md[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/ca.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/de.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/es.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/fr.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/hi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/id.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/ja.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/nl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/pt.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/ru.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/translation.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/vi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mysql/src/i18n/zh.json[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-mysql and [1m4[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 3 out of 5 tasks.[22m
+[API] [15:04:30 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 8.03 seconds[22m[36m[39m
+[API] [15:04:30 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:04:30 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-mongodb... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-mongodb and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-mongodb
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-mongodb:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-mongodb:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-mongodb"...
+[API] Done compiling TypeScript files for project "pieces-mongodb".
+[API] [2m../../../../dist/packages/pieces/community/mongodb/README.md[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/de.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/es.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/fr.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/ja.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/nl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/pt.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/ru.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/translation.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/vi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/mongodb/src/i18n/zh.json[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-mongodb and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:04:38 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 7.85 seconds[22m[36m[39m
+[API] [15:04:38 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:04:38 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-oracle-database... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-oracle-database and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-oracle-database
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-oracle-database:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-oracle-database:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-oracle-database"...
+[API] Done compiling TypeScript files for project "pieces-oracle-database".
+[API] [2m../../../../dist/packages/pieces/community/oracle-database/README.md[22m
+[API] [2m../../../../../../dist/packages/pieces/community/oracle-database/src/i18n/de.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/oracle-database/src/i18n/es.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/oracle-database/src/i18n/fr.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/oracle-database/src/i18n/ja.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/oracle-database/src/i18n/nl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/oracle-database/src/i18n/pt.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/oracle-database/src/i18n/translation.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/oracle-database/src/i18n/zh.json[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-oracle-database and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:04:47 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 9.06 seconds[22m[36m[39m
+[API] [15:04:47 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:04:47 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-surrealdb... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-surrealdb and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-surrealdb
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-surrealdb:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-surrealdb:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-surrealdb"...
+[API] Done compiling TypeScript files for project "pieces-surrealdb".
+[API] [2m../../../../dist/packages/pieces/community/surrealdb/README.md[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/de.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/es.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/fr.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/ja.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/nl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/pt.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/ru.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/translation.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/vi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/surrealdb/src/i18n/zh.json[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-surrealdb and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:04:54 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 6.29 seconds[22m[36m[39m
+[API] [15:04:54 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [15:04:54 UTC] [32mINFO[39m: [36m[34m[1m🤌 Building pieces with target: build for pieces-nocodb... 🤌[22m[36m[39m
+[API] [0m[7m[1m[36m NX [39m[22m[27m[0m  [36mRunning target [1mbuild[22m for project pieces-nocodb and [1m6[22m tasks it depends on:[39m
+[API] [2m-[22m pieces-nocodb
+[API] [2m> [22m[2mnx run[22m shared:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "shared"...
+[API] Done compiling TypeScript files for project "shared".
+[API] [2m../../dist/packages/shared/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-framework:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-framework:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-framework"...
+[API] Done compiling TypeScript files for project "pieces-framework".
+[API] [2m../../../../dist/packages/pieces/community/framework/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-common:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-common:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-common"...
+[API] Done compiling TypeScript files for project "pieces-common".
+[API] [2m../../../../dist/packages/pieces/community/common/README.md[22m
+[API] [2m> [22m[2mnx run[22m pieces-nocodb:prebuild
+[API] [2m> [22mbun install --no-save --silent
+[API] [2m> [22m[2mnx run[22m pieces-nocodb:build  [2m[local cache][22m
+[API] Compiling TypeScript files for project "pieces-nocodb"...
+[API] Done compiling TypeScript files for project "pieces-nocodb".
+[API] [2m../../../../dist/packages/pieces/community/nocodb/README.md[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/ca.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/de.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/es.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/fr.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/hi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/id.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/ja.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/nl.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/pt.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/ru.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/translation.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/vi.json[22m
+[API] [2m../../../../../../dist/packages/pieces/community/nocodb/src/i18n/zh.json[22m
+[API] [0m[7m[1m[32m NX [39m[22m[27m[0m  [32mSuccessfully ran target [1mbuild[22m for project pieces-nocodb and [1m6[22m tasks it depends on[39m
+[API] [2mNx read the output from the cache instead of running the command for 4 out of 7 tasks.[22m
+[API] [15:05:00 UTC] [32mINFO[39m: [36m[34m[1mBuild completed in 5.84 seconds[22m[36m[39m
+[API] [15:05:00 UTC] [32mINFO[39m: [36m[32m[1m✨ Changes are ready! Please refresh the frontend to see the new updates. ✨[22m[36m[39m
+[API] [1m[31mWatch error: Daemon closed the connection[39m[22m
+[API] node:fs:2368
+[API]     return binding.writeFileUtf8(
+[API]                    ^
+[API] 
+[API] Error: ENOENT: no such file or directory, open '/home/razvan-duican/B4AI/activepieces/.nx/cache/terminalOutputs/12207427421415559346'
+[API]     at writeFileSync (node:fs:2368:20)
+[API]     at ForkedProcessTaskRunner.writeTerminalOutput (/home/razvan-duican/B4AI/activepieces/node_modules/nx/src/tasks-runner/forked-process-task-runner.js:238:32)
+[API]     at /home/razvan-duican/B4AI/activepieces/node_modules/nx/src/tasks-runner/forked-process-task-runner.js:182:22
+[API]     at ChildProcess.<anonymous> (/home/razvan-duican/B4AI/activepieces/node_modules/nx/src/tasks-runner/running-tasks/node-child-process.js:41:17)
+[API]     at ChildProcess.emit (node:events:524:28)
+[API]     at ChildProcess._handle.onexit (node:internal/child_process:293:12) {
+[API]   errno: -2,
+[API]   code: 'ENOENT',
+[API]   syscall: 'open',
+[API]   path: '/home/razvan-duican/B4AI/activepieces/.nx/cache/terminalOutputs/12207427421415559346'
+[API] }
+[API] 
+[API] Node.js v20.19.5
+[API] npm run serve:backend exited with code 1

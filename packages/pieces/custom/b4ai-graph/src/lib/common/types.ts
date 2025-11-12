@@ -129,9 +129,11 @@ export interface CreateRelationshipTypeRequest {
   description?: string;
   sourceNodeTypeId: string;
   targetNodeTypeId: string;
-  knowledgeHubId: string;
-  status: Status;
+  knowledgeHubId?: string;
+  status?: Status;
   properties?: CreatePropertyRequest[];
+  isDirected?: boolean;
+  allowMultiple?: boolean;
 }
 
 export interface UpdateRelationshipTypeRequest {
@@ -139,6 +141,8 @@ export interface UpdateRelationshipTypeRequest {
   description?: string;
   sourceNodeTypeId?: string;
   targetNodeTypeId?: string;
+  isDirected?: boolean;
+  allowMultiple?: boolean;
 }
 
 // Relationship Property Models
@@ -154,10 +158,10 @@ export interface RelationshipProperty {
 }
 
 // Record Models
-export interface Record {
+export interface NodeRecord {
   id: number;
   nodeTypeId: string;
-  properties: Record<string, any>;
+  properties: globalThis.Record<string, any>;
   relationships?: RecordRelationship[];
   createdAt: string;
   updatedAt: string;
@@ -167,18 +171,18 @@ export interface RecordRelationship {
   relationshipId: string;
   records: Array<{
     recordId: number;
-    relationshipProperties?: Record<string, any>;
+    relationshipProperties?: globalThis.Record<string, any>;
   }>;
 }
 
 export interface CreateRecordRequest {
   nodeTypeId: string;
-  properties: Record<string, any>;
+  properties: globalThis.Record<string, any>;
   relationships?: RecordRelationship[];
 }
 
 export interface UpdateRecordRequest {
-  properties?: Record<string, any>;
+  properties?: globalThis.Record<string, any>;
   relationships?: RecordRelationship[];
 }
 
@@ -214,6 +218,12 @@ export interface PaginatedResponse<T> {
   limit: number;
   total: number;
   totalPages: number;
+  pagination?: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
 }
 
 // Deduplication Models
@@ -230,7 +240,7 @@ export interface DeduplicationTestResult {
     matches: Array<{
       recordId: number;
       similarity: number;
-      fields: Record<string, any>;
+      fields: globalThis.Record<string, any>;
     }>;
   }>;
   totalDuplicates: number;
@@ -301,17 +311,17 @@ export interface UpdateRelationshipPropertyRequest {
   validationRules?: any;
 }
 
-// Graph Node (extends Record)
-export interface GraphNode extends Record {}
+// Graph Node (extends NodeRecord)
+export interface GraphNode extends NodeRecord {}
 
 // Node Request Types
 export interface CreateNodeRequest {
   nodeTypeId: string;
-  properties: Record<string, any>;
+  properties: globalThis.Record<string, any>;
 }
 
 export interface UpdateNodeRequest {
-  properties: Record<string, any>;
+  properties: globalThis.Record<string, any>;
 }
 
 // Graph Relationship
@@ -320,7 +330,7 @@ export interface GraphRelationship {
   relationshipTypeId: string;
   sourceNodeId: string;
   targetNodeId: string;
-  properties: Record<string, any>;
+  properties: globalThis.Record<string, any>;
   createdAt: string;
   updatedAt: string;
 }
@@ -330,11 +340,11 @@ export interface CreateRelationshipRequest {
   relationshipTypeId: string;
   sourceNodeId: string;
   targetNodeId: string;
-  properties?: Record<string, any>;
+  properties?: globalThis.Record<string, any>;
 }
 
 export interface UpdateRelationshipRequest {
-  properties: Record<string, any>;
+  properties: globalThis.Record<string, any>;
 }
 
 // Deduplication Extended Types
@@ -352,7 +362,7 @@ export interface FindDuplicatesResponse {
 export interface MergeNodesRequest {
   nodeIds: any[];
   mergeStrategy: 'prefer_first' | 'prefer_non_empty' | 'prefer_latest' | 'concatenate';
-  keepRelationships: boolean;
+  keepRelationships?: boolean;
 }
 
 export interface DedupRule {
@@ -372,10 +382,10 @@ export interface CreateDedupRuleRequest {
   name: string;
   nodeTypeId: string;
   matchFields: any[];
-  similarityThreshold: number;
-  autoMerge: boolean;
-  mergeStrategy: 'prefer_first' | 'prefer_non_empty' | 'prefer_latest' | 'concatenate';
-  isActive: boolean;
+  similarityThreshold?: number;
+  autoMerge?: boolean;
+  mergeStrategy?: 'prefer_first' | 'prefer_non_empty' | 'prefer_latest' | 'concatenate';
+  isActive?: boolean;
 }
 
 export interface UpdateDedupRuleRequest {

@@ -29,7 +29,7 @@ export const createNodeType = createAction({
     status: Property.StaticDropdown({
       displayName: 'Status',
       required: true,
-      defaultValue: 'PRODUCTION',
+      defaultValue: 'DRAFT',
       options: {
         options: [
           { label: 'Production', value: 'PRODUCTION' },

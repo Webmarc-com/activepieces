@@ -16,15 +16,33 @@ export const bulkCreateNodeTypes = createAction({
       description: 'Array of node type objects to create',
       required: true,
     }),
+    defaultStatus: Property.StaticDropdown({
+      displayName: 'Default Status',
+      description: 'Default status for node types that do not specify their own status',
+      required: false,
+      defaultValue: 'DRAFT',
+      options: {
+        options: [
+          { label: 'Production', value: 'PRODUCTION' },
+          { label: 'Draft', value: 'DRAFT' },
+        ],
+      },
+    }),
   },
   async run(context) {
-    const { nodeTypes } = context.propsValue;
+    const { nodeTypes, defaultStatus } = context.propsValue;
+
+    // Apply default status to items that don't have one
+    const nodeTypesWithStatus = (nodeTypes as any[]).map((nodeType: any) => ({
+      ...nodeType,
+      status: nodeType.status || defaultStatus || 'DRAFT',
+    }));
 
     const response = await graphApiCall<BulkCreateResponse>({
       method: HttpMethod.POST,
       endpoint: API_ENDPOINTS.NODE_TYPES_BULK,
       auth: context.auth as any,
-      body: nodeTypes,
+      body: nodeTypesWithStatus,
     });
 
     return {

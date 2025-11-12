@@ -13,12 +13,18 @@ export const queryNodes = createAction({
   props: {
     nodeTypeId: Property.ShortText({
       displayName: 'Node Type ID',
-      description: 'Filter by node type ID',
-      required: false,
+      description: 'The ID of the node type to query',
+      required: true,
     }),
     filters: Property.Json({
       displayName: 'Filters',
-      description: 'JSON array of filter objects with field, operator, and value',
+      description: `Optional filter criteria. Can be a PropertyFilter or FilterGroup.
+
+PropertyFilter example: { "propertyName": "name", "operator": "=", "value": "John" }
+FilterGroup example: { "logic": "AND", "filters": [{"propertyName": "age", "operator": ">", "value": 18}, {"propertyName": "status", "operator": "=", "value": "active"}] }
+
+Supported operators: =, !=, <>, >, <, >=, <=, CONTAINS, NOT CONTAINS, CONTAINS ALL, STARTS WITH, NOT STARTS WITH, ENDS WITH, NOT ENDS WITH, IN, NOT IN, IS NULL, IS NOT NULL, REGEX, NOT REGEX
+Supported logic: AND, OR, NOT, XOR`,
       required: false,
     }),
     page: Property.Number({
@@ -47,39 +53,58 @@ export const queryNodes = createAction({
         ],
       },
     }),
+    includeRelationships: Property.Checkbox({
+      displayName: 'Include Relationships',
+      description: 'Include relationship data in the response',
+      required: false,
+      defaultValue: false,
+    }),
   },
   async run(context) {
-    const { nodeTypeId, filters, page, limit, sortBy, sortOrder } = context.propsValue;
+    const { nodeTypeId, filters, page, limit, sortBy, sortOrder, includeRelationships } =
+      context.propsValue;
 
-    const queryParams = new URLSearchParams();
-    if (nodeTypeId) queryParams.append('nodeTypeId', nodeTypeId);
-    if (page) queryParams.append('page', page.toString());
-    if (limit) queryParams.append('limit', limit.toString());
-    if (sortBy) queryParams.append('sortBy', sortBy);
-    if (sortOrder) queryParams.append('sortOrder', sortOrder);
-
-    let endpoint = API_ENDPOINTS.NODES_QUERY;
-    if (queryParams.toString()) {
-      endpoint = `${endpoint}?${queryParams.toString()}`;
+    if (!nodeTypeId) {
+      throw new Error('Node Type ID is required');
     }
 
-    const body = filters ? { filters } : undefined;
+    const body: any = {
+      nodeTypeId,
+      page: page || 1,
+      pageSize: limit || 10,
+      includeRelationships: includeRelationships || false,
+    };
 
-    const response = await graphApiCall<PaginatedResponse<GraphNode>>({
+    if (sortBy) {
+      body.orderBy = sortBy;
+      body.orderDirection = sortOrder || 'asc';
+    }
+
+    if (filters) {
+      body.filters = filters;
+    }
+
+    const response = await graphApiCall<{
+      success: boolean;
+      records: GraphNode[];
+      total: number;
+      page: number;
+      pageSize: number;
+    }>({
       method: HttpMethod.POST,
-      endpoint,
+      endpoint: API_ENDPOINTS.RECORDS_FILTER,
       auth: context.auth as any,
       body,
     });
 
     return {
       success: true,
-      nodes: response.data,
+      nodes: response.records,
       pagination: {
         page: response.page,
-        limit: response.limit,
+        limit: response.pageSize,
         total: response.total,
-        totalPages: response.totalPages,
+        totalPages: Math.ceil(response.total / response.pageSize),
       },
     };
   },

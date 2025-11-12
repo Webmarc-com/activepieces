@@ -43,6 +43,17 @@ export const createRelationshipType = createAction({
       required: false,
       defaultValue: true,
     }),
+    status: Property.StaticDropdown({
+      displayName: 'Status',
+      required: true,
+      defaultValue: 'DRAFT',
+      options: {
+        options: [
+          { label: 'Production', value: 'PRODUCTION' },
+          { label: 'Draft', value: 'DRAFT' },
+        ],
+      },
+    }),
   },
   async run(context) {
     const {
@@ -52,6 +63,7 @@ export const createRelationshipType = createAction({
       targetNodeTypeId,
       isDirected,
       allowMultiple,
+      status,
     } = context.propsValue;
 
     const body: CreateRelationshipTypeRequest = {
@@ -60,6 +72,7 @@ export const createRelationshipType = createAction({
       targetNodeTypeId,
       isDirected,
       allowMultiple,
+      status: status as any,
     };
 
     if (description) body.description = description;

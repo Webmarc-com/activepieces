@@ -4,6 +4,9 @@ import { graphAuth } from '../../common/auth';
 import { graphApiCall } from '../../common/client';
 import { API_ENDPOINTS } from '../../common/constants';
 
+// NOTE: This action needs refactoring. According to GRAPH_API.md, relationships are managed
+// through the node-type-records API, not via separate /relationships endpoints.
+// Relationships should be removed via PUT /api/node-type-records with operation: 'remove'.
 export const deleteRelationship = createAction({
   auth: graphAuth,
   name: 'delete_relationship',
