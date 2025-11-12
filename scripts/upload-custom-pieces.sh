@@ -95,8 +95,9 @@ for piece_dir in "${PIECES_DIR}"/*; do
         -H "Authorization: Bearer ${API_KEY}" \
         -F "pieceArchive=@${tar_file}" \
         -F "packageType=ARCHIVE" \
-        -F "pieceType=CUSTOM" \
         -F "scope=PLATFORM" \
+        -F "pieceName=${pkg_name}" \
+        -F "pieceVersion=${version}" \
         -w "\n%{http_code}" \
         -s 2>/dev/null || echo "000")
 
