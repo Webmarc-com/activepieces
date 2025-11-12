@@ -54,6 +54,9 @@ ENV NX_NO_CLOUD=true
 RUN npx nx run-many --target=build --projects=react-ui --skip-nx-cache
 RUN npx nx run-many --target=build --projects=server-api --configuration production --skip-nx-cache
 
+# Build custom B4AI pieces
+RUN npx nx run-many --target=build --projects=pieces-b4ai-hub,pieces-b4ai-memory,pieces-b4ai-common --skip-nx-cache
+
 # Install backend production dependencies
 RUN cd dist/packages/server/api && bun install --production --force
 
@@ -81,6 +84,7 @@ RUN mkdir -p /usr/src/app/dist/packages/shared/
 COPY --from=build /usr/src/app/dist/packages/engine/ /usr/src/app/dist/packages/engine/
 COPY --from=build /usr/src/app/dist/packages/server/ /usr/src/app/dist/packages/server/
 COPY --from=build /usr/src/app/dist/packages/shared/ /usr/src/app/dist/packages/shared/
+COPY --from=build /usr/src/app/dist/packages/pieces/ /usr/src/app/dist/packages/pieces/
 
 RUN cd /usr/src/app/dist/packages/server/api/ && bun install --production --force
 
@@ -90,6 +94,10 @@ COPY --from=build /usr/src/app/packages packages
 COPY --from=build /usr/src/app/dist/packages/react-ui /usr/share/nginx/html/
 
 LABEL service=activepieces
+
+# Copy custom scripts for piece management
+COPY scripts/ /usr/src/app/scripts/
+RUN chmod +x /usr/src/app/scripts/*.sh
 
 # Set up entrypoint script
 COPY docker-entrypoint.sh .

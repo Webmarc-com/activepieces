@@ -16,6 +16,12 @@ mv /usr/share/nginx/html/index.html.tmp /usr/share/nginx/html/index.html
 # Start Nginx server
 nginx -g "daemon off;" &
 
+# Start custom pieces upload in background (will wait for API to be ready)
+if [ -f "/usr/src/app/scripts/upload-custom-pieces.sh" ]; then
+    echo "Starting custom pieces upload in background..."
+    /usr/src/app/scripts/upload-custom-pieces.sh &
+fi
+
 # Start backend server
 if [ "$AP_CONTAINER_TYPE" = "APP" ] && [ "$AP_PM2_ENABLED" = "true" ]; then
     echo "Starting backend server with PM2 (APP mode)"
