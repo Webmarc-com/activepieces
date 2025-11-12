@@ -288,16 +288,24 @@ git push origin staging
 | `AP_REDIS_PORT` | Redis port | `6379` |
 | `AP_REDIS_PASSWORD` | Redis password (secret) | From secret |
 
-### Recommended Performance Settings
+### Recommended Production Settings (Aligned with Helm Chart)
 
 | Variable | Description | QA Value | Staging Value |
 |----------|-------------|----------|---------------|
 | `AP_EXECUTION_MODE` | Sandboxing mode | `SANDBOX_CODE_ONLY` | `SANDBOX_CODE_ONLY` |
+| `AP_LOG_LEVEL` | Logging level | `info` | `info` |
+| `AP_LOG_PRETTY` | Pretty print logs (false for production) | `false` | `false` |
+| `AP_SHOW_CHANGELOG` | Show changelog to users | `true` | `true` |
+| `AP_ENABLE_FLOW_ON_PUBLISH` | Auto-enable flows when published | `true` | `true` |
+| `AP_ENGINE_EXECUTABLE_PATH` | Engine executable path | `dist/packages/engine/main.js` | `dist/packages/engine/main.js` |
 | `AP_FLOW_WORKER_CONCURRENCY` | Flow worker threads | `5` | `10` |
 | `AP_SCHEDULED_WORKER_CONCURRENCY` | Scheduled worker threads | `5` | `10` |
 | `AP_MAX_CONCURRENT_JOBS_PER_PROJECT` | Max jobs per project | `50` | `100` |
 | `AP_SANDBOX_MEMORY_LIMIT` | Memory limit per execution (KB) | `524288` (512MB) | `524288` (512MB) |
 | `AP_FLOW_TIMEOUT_SECONDS` | Flow execution timeout | `600` (10 min) | `600` (10 min) |
+| `AP_REDIS_FAILED_JOB_RETENTION_DAYS` | Failed job retention | `7` | `7` |
+| `AP_REDIS_FAILED_JOB_RETENTION_MAX_COUNT` | Max failed jobs to keep | `100` | `100` |
+| `AP_TEMPLATES_SOURCE_URL` | Template source URL | `https://cloud.activepieces.com/api/v1/flow-templates` | `https://cloud.activepieces.com/api/v1/flow-templates` |
 
 ### Optional Features
 
@@ -542,5 +550,10 @@ kubectl rollout restart deployment activepieces -n surfsite-qa
 
 ---
 
+## Document Updates
+
+- **v1.1.0** (2025-01-12): Updated environment variable recommendations to align with official Helm chart production defaults
+- **v1.0.0** (2025-01-12): Initial version
+
 **Last Updated**: 2025-01-12
-**Version**: 1.0.0
+**Version**: 1.1.0

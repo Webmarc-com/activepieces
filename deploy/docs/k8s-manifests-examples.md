@@ -91,6 +91,17 @@ data:
   # Options: UNSANDBOXED, SANDBOX_CODE_ONLY, SANDBOX_PROCESS, SANDBOX_CODE_AND_PROCESS
   AP_EXECUTION_MODE: "SANDBOX_CODE_ONLY"
 
+  # Logging Configuration
+  AP_LOG_LEVEL: "info"        # info, debug, warn, error
+  AP_LOG_PRETTY: "false"      # Set to false for production (JSON logs)
+
+  # UI and Behavior
+  AP_SHOW_CHANGELOG: "true"           # Show changelog to users
+  AP_ENABLE_FLOW_ON_PUBLISH: "true"   # Auto-enable flows when published
+
+  # Engine Configuration
+  AP_ENGINE_EXECUTABLE_PATH: "dist/packages/engine/main.js"
+
   # Database Configuration
   AP_DB_TYPE: "POSTGRES"
   AP_POSTGRES_HOST: "your-postgres-host.example.com"
@@ -106,6 +117,10 @@ data:
   AP_REDIS_DB: "0"
   AP_REDIS_USE_SSL: "true"
 
+  # Redis Failed Job Settings (aligned with Helm defaults)
+  AP_REDIS_FAILED_JOB_RETENTION_DAYS: "7"
+  AP_REDIS_FAILED_JOB_RETENTION_MAX_COUNT: "100"
+
   # Performance Tuning - QA (Lower values)
   AP_FLOW_WORKER_CONCURRENCY: "5"
   AP_SCHEDULED_WORKER_CONCURRENCY: "5"
@@ -115,13 +130,15 @@ data:
 
   # Data Retention
   AP_EXECUTION_DATA_RETENTION_DAYS: "30"
-  AP_REDIS_FAILED_JOB_RETENTION_DAYS: "30"
 
-  # Telemetry (optional)
+  # Telemetry
   AP_TELEMETRY_ENABLED: "true"
 
   # Trigger Settings
   AP_TRIGGER_DEFAULT_POLL_INTERVAL: "5"  # minutes
+
+  # Templates
+  AP_TEMPLATES_SOURCE_URL: "https://cloud.activepieces.com/api/v1/flow-templates"
 
   # Optional: Custom piece repository
   # AP_PIECES_SOURCE: "DB"
@@ -234,13 +251,13 @@ spec:
         - name: cache
           mountPath: /usr/src/app/cache
 
-        # Health checks
+        # Health checks (aligned with Helm chart defaults)
         livenessProbe:
           httpGet:
             path: /v1/health
-            port: 80
+            port: http
             scheme: HTTP
-          initialDelaySeconds: 60
+          initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 5
           successThreshold: 1
@@ -249,9 +266,9 @@ spec:
         readinessProbe:
           httpGet:
             path: /v1/health
-            port: 80
+            port: http
             scheme: HTTP
-          initialDelaySeconds: 30
+          initialDelaySeconds: 5
           periodSeconds: 5
           timeoutSeconds: 3
           successThreshold: 1
@@ -261,7 +278,7 @@ spec:
         startupProbe:
           httpGet:
             path: /v1/health
-            port: 80
+            port: http
             scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 10
@@ -378,12 +395,28 @@ For the **Staging** environment, create similar files in `surfsite/staging/activ
 3. **configmap.yaml**:
    ```yaml
    data:
+     # Same base configuration as QA, with these differences:
      AP_FRONTEND_URL: "https://activepieces-staging.surfsite.ai"
      AP_POSTGRES_DATABASE: "activepieces_staging"
-     # Higher performance settings
+
+     # Higher performance settings for staging
      AP_FLOW_WORKER_CONCURRENCY: "10"
      AP_SCHEDULED_WORKER_CONCURRENCY: "10"
      AP_MAX_CONCURRENT_JOBS_PER_PROJECT: "100"
+
+     # All other values should match QA configuration:
+     # - AP_ENVIRONMENT: "prod"
+     # - AP_EDITION: "ce"
+     # - AP_EXECUTION_MODE: "SANDBOX_CODE_ONLY"
+     # - AP_LOG_LEVEL: "info"
+     # - AP_LOG_PRETTY: "false"
+     # - AP_SHOW_CHANGELOG: "true"
+     # - AP_ENABLE_FLOW_ON_PUBLISH: "true"
+     # - AP_ENGINE_EXECUTABLE_PATH: "dist/packages/engine/main.js"
+     # - AP_REDIS_FAILED_JOB_RETENTION_DAYS: "7"
+     # - AP_REDIS_FAILED_JOB_RETENTION_MAX_COUNT: "100"
+     # - AP_TEMPLATES_SOURCE_URL: "https://cloud.activepieces.com/api/v1/flow-templates"
+     # ... and all other settings from QA
    ```
 
 4. **pvc.yaml**:
@@ -666,5 +699,17 @@ After deployment:
 
 ---
 
+## Version History
+
+- **v1.1.0** (2025-01-12): Updated configuration to align with official Helm chart production recommendations
+  - Added logging configuration (`AP_LOG_LEVEL`, `AP_LOG_PRETTY`)
+  - Added UI behavior settings (`AP_SHOW_CHANGELOG`, `AP_ENABLE_FLOW_ON_PUBLISH`)
+  - Added engine configuration (`AP_ENGINE_EXECUTABLE_PATH`)
+  - Updated Redis failed job settings to match Helm defaults (7 days, 100 max count)
+  - Added template source URL configuration
+  - Updated health probe timings to match Helm chart (liveness: 30s, readiness: 5s)
+  - Ensured QA and Staging configurations are consistent
+- **v1.0.0** (2025-01-12): Initial version
+
 **Last Updated**: 2025-01-12
-**Version**: 1.0.0
+**Version**: 1.1.0
