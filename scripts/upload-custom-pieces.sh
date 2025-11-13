@@ -103,6 +103,10 @@ for piece_dir in "${PIECES_DIR}"/*; do
 
     # Create archive
     cd "$piece_dir"
+
+    # Clean up any existing tar files to prevent recursive inclusion
+    rm -f ./*.tgz 2>/dev/null
+
     tar_file=$(npm pack --json 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync(0, 'utf-8'))[0].filename" 2>/dev/null)
 
     if [ -z "$tar_file" ] || [ ! -f "$tar_file" ]; then
@@ -110,6 +114,16 @@ for piece_dir in "${PIECES_DIR}"/*; do
         ERROR_COUNT=$((ERROR_COUNT + 1))
         continue
     fi
+
+    # Validate tar file
+    tar_size=$(stat -f%z "$tar_file" 2>/dev/null || stat -c%s "$tar_file" 2>/dev/null || echo "0")
+    if [ "$tar_size" -eq 0 ]; then
+        echo -e "${RED}  ✗ Archive is empty${NC}"
+        rm -f "$tar_file"
+        ERROR_COUNT=$((ERROR_COUNT + 1))
+        continue
+    fi
+    echo "  Archive created: ${tar_file} (${tar_size} bytes)"
 
     # Upload to API
     response=$(curl -X POST "${API_URL}/v1/pieces" \
@@ -120,7 +134,7 @@ for piece_dir in "${PIECES_DIR}"/*; do
         -F "pieceName=${pkg_name}" \
         -F "pieceVersion=${version}" \
         -w "\n%{http_code}" \
-        -s 2>/dev/null || echo "000")
+        -s 2>&1 || echo "CURL_FAILED")
 
     http_code=$(echo "$response" | tail -n1)
 
@@ -128,14 +142,30 @@ for piece_dir in "${PIECES_DIR}"/*; do
     rm -f "$tar_file"
 
     # Check response
-    if [ "$http_code" = "200" ] || [ "$http_code" = "201" ]; then
+    if [ "$http_code" = "CURL_FAILED" ]; then
+        echo -e "${RED}  ✗ curl command failed${NC}"
+        echo "  Error details: $(echo "$response" | head -n 5)"
+        ERROR_COUNT=$((ERROR_COUNT + 1))
+    elif [ "$http_code" = "200" ] || [ "$http_code" = "201" ]; then
         echo -e "${GREEN}  ✓ Uploaded successfully${NC}"
         UPLOAD_COUNT=$((UPLOAD_COUNT + 1))
     elif [ "$http_code" = "409" ]; then
         echo -e "${YELLOW}  ⚠ Already exists (skipped)${NC}"
         SKIP_COUNT=$((SKIP_COUNT + 1))
+    elif [ "$http_code" = "401" ] || [ "$http_code" = "403" ]; then
+        echo -e "${RED}  ✗ Authentication failed (HTTP ${http_code})${NC}"
+        ERROR_COUNT=$((ERROR_COUNT + 1))
+    elif [ "$http_code" = "400" ]; then
+        echo -e "${RED}  ✗ Bad request (HTTP ${http_code})${NC}"
+        response_body=$(echo "$response" | head -n -1)
+        echo "  Response: ${response_body}"
+        ERROR_COUNT=$((ERROR_COUNT + 1))
     else
         echo -e "${RED}  ✗ Upload failed (HTTP ${http_code})${NC}"
+        response_body=$(echo "$response" | head -n -1 | head -n 5)
+        if [ -n "$response_body" ]; then
+            echo "  Response: ${response_body}"
+        fi
         ERROR_COUNT=$((ERROR_COUNT + 1))
     fi
 
