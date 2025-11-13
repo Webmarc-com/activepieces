@@ -65,6 +65,9 @@
       ],
       "@activepieces/piece-b4ai-memory": [
         "packages/pieces/custom/b4ai-memory/src/index.ts"
+      ],
+      "@activepieces/piece-b4ai-utilities": [
+        "packages/pieces/custom/b4ai-utilities/src/index.ts"
       ]
     },
     "resolveJsonModule": true
