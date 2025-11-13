@@ -12,7 +12,7 @@ export const b4aiUtilities = createPiece({
   description: 'File upload and management utilities for B4AI platform - Upload, download, list, and manage files in Google Cloud Storage',
   auth: b4aiUtilitiesAuth,
   minimumSupportedRelease: '0.30.0',
-  logoUrl: 'logo_white.svg',
+  logoUrl: 'https://storage.googleapis.com/surfsite-public/logo_white.png',
   authors: ['B4AI Team'],
   categories: [PieceCategory.CONTENT_AND_FILES, PieceCategory.DEVELOPER_TOOLS],
   actions: [

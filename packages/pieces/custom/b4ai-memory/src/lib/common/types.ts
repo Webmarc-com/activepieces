@@ -408,3 +408,53 @@ export interface ApiResponse<T = any> {
   message?: string;
   data?: T;
 }
+
+// Graph Ingestion Models (LLM-Optimized)
+export interface GraphIngestNode {
+  type: string; // Human-readable type name (e.g., "Consultant")
+  id: string; // Temporary ID for cross-referencing (e.g., "maria")
+  properties: globalThis.Record<string, any>;
+}
+
+export interface GraphIngestRelationship {
+  type: string; // Human-readable relationship type name (e.g., "WORKED_AT")
+  from: string; // Temporary ID of source node
+  to: string; // Temporary ID of target node
+  properties?: globalThis.Record<string, any>;
+}
+
+export interface GraphIngestOptions {
+  enableDeduplication?: boolean;
+  returnCreatedIds?: boolean;
+}
+
+export interface GraphIngestRequest {
+  nodes: GraphIngestNode[];
+  relationships?: GraphIngestRelationship[];
+  options?: GraphIngestOptions;
+}
+
+export interface GraphIngestItemResult {
+  success: boolean;
+  tempId?: string;
+  databaseId?: string | number;
+  error?: string;
+}
+
+export interface GraphIngestPhaseResult {
+  total: number;
+  successful: number;
+  failed: number;
+  items: GraphIngestItemResult[];
+}
+
+export interface GraphIngestResponse {
+  phase1Results: GraphIngestPhaseResult; // Node creation results
+  phase2Results?: GraphIngestPhaseResult; // Relationship creation results
+  idMapping: globalThis.Record<string, string | number>; // Temp ID -> Database ID
+  summary: {
+    nodesCreated: number;
+    relationshipsCreated: number;
+    totalErrors: number;
+  };
+}

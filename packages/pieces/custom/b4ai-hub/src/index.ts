@@ -15,7 +15,7 @@ export const b4aiHub = createPiece({
   description: 'Manage graph-based knowledge hubs with schema synchronization and LLM metadata generation',
   auth: knowledgeHubAuth,
   minimumSupportedRelease: '0.30.0',
-  logoUrl: 'logo_purple.svg',
+  logoUrl: 'https://storage.googleapis.com/surfsite-public/logo_purple.png',
   authors: ['B4AI Team'],
   categories: [PieceCategory.ARTIFICIAL_INTELLIGENCE, PieceCategory.DEVELOPER_TOOLS],
   actions: [
