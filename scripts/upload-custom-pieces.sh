@@ -3,7 +3,8 @@ set -e
 
 # Configuration
 API_URL="${AP_FRONTEND_URL:-http://localhost:8080}/api"
-API_KEY="${AP_API_KEY}"
+ADMIN_EMAIL="${AP_ADMIN_EMAIL}"
+ADMIN_PASSWORD="${AP_ADMIN_PASSWORD}"
 PIECES_DIR="/usr/src/app/dist/packages/pieces/custom"
 
 # Color output
@@ -17,11 +18,12 @@ echo "B4AI Custom Pieces Uploader"
 echo "========================================"
 echo "API URL: ${API_URL}"
 echo "Pieces directory: ${PIECES_DIR}"
+echo "Admin email: ${ADMIN_EMAIL}"
 echo ""
 
-# Check if API key is set
-if [ -z "$API_KEY" ]; then
-    echo -e "${RED}ERROR: AP_API_KEY environment variable is not set${NC}"
+# Check if credentials are set
+if [ -z "$ADMIN_EMAIL" ] || [ -z "$ADMIN_PASSWORD" ]; then
+    echo -e "${RED}ERROR: AP_ADMIN_EMAIL and AP_ADMIN_PASSWORD environment variables must be set${NC}"
     exit 1
 fi
 
@@ -41,6 +43,25 @@ until curl -f -s "${API_URL}/v1/pieces" > /dev/null 2>&1; do
 done
 
 echo -e "${GREEN}✓ API is ready${NC}"
+echo ""
+
+# Login to get authentication token
+echo "Logging in to get authentication token..."
+login_response=$(curl -s -X POST "${API_URL}/v1/authentication/sign-in" \
+    -H "Content-Type: application/json" \
+    -d "{\"email\":\"${ADMIN_EMAIL}\",\"password\":\"${ADMIN_PASSWORD}\"}" \
+    2>/dev/null || echo "")
+
+# Extract token from response
+AUTH_TOKEN=$(echo "$login_response" | node -p "try { JSON.parse(require('fs').readFileSync(0, 'utf-8')).token } catch(e) { '' }" 2>/dev/null || echo "")
+
+if [ -z "$AUTH_TOKEN" ]; then
+    echo -e "${RED}ERROR: Failed to authenticate. Please check your credentials.${NC}"
+    echo "Response: $login_response"
+    exit 1
+fi
+
+echo -e "${GREEN}✓ Authentication successful${NC}"
 echo ""
 
 # Check if pieces directory exists
@@ -92,7 +113,7 @@ for piece_dir in "${PIECES_DIR}"/*; do
 
     # Upload to API
     response=$(curl -X POST "${API_URL}/v1/pieces" \
-        -H "Authorization: Bearer ${API_KEY}" \
+        -H "Authorization: Bearer ${AUTH_TOKEN}" \
         -F "pieceArchive=@${tar_file}" \
         -F "packageType=ARCHIVE" \
         -F "scope=PLATFORM" \
