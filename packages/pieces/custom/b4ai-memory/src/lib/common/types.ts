@@ -448,13 +448,48 @@ export interface GraphIngestPhaseResult {
   items: GraphIngestItemResult[];
 }
 
+// Actual API response types
+export interface GraphIngestNodeResult {
+  tempId: string;
+  databaseId: number;
+  type: string;
+  status: 'created' | 'skipped' | 'failed';
+  error?: string;
+}
+
+export interface GraphIngestRelationshipResult {
+  from: string;
+  to: string;
+  type: string;
+  status: 'created' | 'failed';
+  error?: string;
+}
+
+export interface GraphIngestPhase1Result {
+  nodesCreated: number;
+  nodesSkipped: number;
+  nodesFailed: number;
+  nodes: GraphIngestNodeResult[];
+}
+
+export interface GraphIngestPhase2Result {
+  relationshipsCreated: number;
+  relationshipsFailed: number;
+  relationships: GraphIngestRelationshipResult[];
+}
+
+export interface GraphIngestErrorDetail {
+  phase: 'validation' | 'phase1' | 'phase2';
+  type: 'node' | 'relationship';
+  tempId?: string;
+  message: string;
+  details?: string;
+}
+
 export interface GraphIngestResponse {
-  phase1Results: GraphIngestPhaseResult; // Node creation results
-  phase2Results?: GraphIngestPhaseResult; // Relationship creation results
-  idMapping: globalThis.Record<string, string | number>; // Temp ID -> Database ID
-  summary: {
-    nodesCreated: number;
-    relationshipsCreated: number;
-    totalErrors: number;
-  };
+  success: boolean;
+  phase1: GraphIngestPhase1Result; // Node creation results
+  phase2: GraphIngestPhase2Result; // Relationship creation results
+  errors: GraphIngestErrorDetail[];
+  idMapping: globalThis.Record<string, number>; // Temp ID -> Database ID
 }
