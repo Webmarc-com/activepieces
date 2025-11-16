@@ -45,6 +45,9 @@ export const API_ENDPOINTS = {
   RELATIONSHIPS: '/graph-relationships',
   RELATIONSHIP_BY_ID: (id: string) => `/graph-relationships/${id}`,
   RELATIONSHIPS_QUERY: '/graph-relationships/query',
+
+  // Graph Ingestion (LLM-Optimized)
+  GRAPH_INGEST: (knowledgeHubId: string) => `/graph/ingest/?knowledgeHubId=${knowledgeHubId}`,
 } as const;
 
 // Property Data Types for dropdown

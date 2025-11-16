@@ -29,13 +29,14 @@ export const uploadFile = createAction({
       contentType: file.extension ? `application/${file.extension}` : 'application/octet-stream',
     });
 
-    // Upload the file
+    // Upload the file with proper FormData headers
     const response = await uploadApiCall<FileUploadResponse>({
       method: HttpMethod.POST,
       endpoint: '/files',
       auth: context.auth,
       body: formData,
       isMultipart: true,
+      formDataHeaders: formData.getHeaders(), // Get proper multipart headers with boundary
     });
 
     return {

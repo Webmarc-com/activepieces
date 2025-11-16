@@ -66,12 +66,15 @@ import { updateDedupRule } from './lib/actions/deduplication/update-dedup-rule';
 import { deleteDedupRule } from './lib/actions/deduplication/delete-dedup-rule';
 import { runDedupRule } from './lib/actions/deduplication/run-dedup-rule';
 
+// Graph Ingestion
+import { ingestGraphData } from './lib/actions/ingestion/ingest-graph-data';
+
 export const b4aiMemory = createPiece({
   displayName: 'B4AI Memory',
   description: 'Schema-first graph database for managing nodes, relationships, and intelligent deduplication',
   auth: graphAuth,
   minimumSupportedRelease: '0.30.0',
-  logoUrl: 'logo_black.svg',
+  logoUrl: 'https://storage.googleapis.com/surfsite-public/logo_black.png',
   authors: ['B4AI Team'],
   categories: [PieceCategory.BUSINESS_INTELLIGENCE, PieceCategory.DEVELOPER_TOOLS],
   actions: [
@@ -137,6 +140,9 @@ export const b4aiMemory = createPiece({
     updateDedupRule,
     deleteDedupRule,
     runDedupRule,
+
+    // Graph Ingestion (1)
+    ingestGraphData,
 
     // Custom API Call
     createCustomApiCallAction({

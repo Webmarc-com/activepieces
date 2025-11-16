@@ -13,6 +13,7 @@ export interface UploadApiCallParams {
   body?: any;
   query?: Record<string, string | number | boolean | undefined>;
   isMultipart?: boolean;
+  formDataHeaders?: Record<string, string>;
 }
 
 /**
@@ -28,6 +29,7 @@ export async function uploadApiCall<T = any>({
   body,
   query,
   isMultipart = false,
+  formDataHeaders,
 }: UploadApiCallParams): Promise<T> {
   const { baseUrl, apiKey, apiSecret } = auth;
 
@@ -54,9 +56,12 @@ export async function uploadApiCall<T = any>({
     'x-api-secret': apiSecret,
   };
 
-  // Only add Content-Type for non-multipart requests
-  // For multipart, the browser/httpClient will set it automatically with boundary
-  if (!isMultipart) {
+  // Handle multipart form data headers with boundary
+  if (isMultipart && formDataHeaders) {
+    // Merge FormData-generated headers (includes Content-Type with boundary)
+    Object.assign(headers, formDataHeaders);
+  } else if (!isMultipart) {
+    // Only add JSON Content-Type for non-multipart requests
     headers['Content-Type'] = 'application/json';
   }
 

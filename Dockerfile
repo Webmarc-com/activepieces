@@ -95,10 +95,6 @@ COPY --from=build /usr/src/app/dist/packages/react-ui /usr/share/nginx/html/
 
 LABEL service=activepieces
 
-# Copy custom scripts for piece management
-COPY scripts/ /usr/src/app/scripts/
-RUN chmod +x /usr/src/app/scripts/*.sh
-
 # Set up entrypoint script
 COPY docker-entrypoint.sh .
 RUN chmod +x docker-entrypoint.sh
