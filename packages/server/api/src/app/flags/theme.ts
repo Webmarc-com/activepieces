@@ -64,9 +64,9 @@ export function generateTheme({
 }
 
 export const defaultTheme = generateTheme({
-    primaryColor: '#6e41e2',
-    websiteName: 'Activepieces',
-    fullLogoUrl: 'https://cdn.activepieces.com/brand/full-logo.png',
-    favIconUrl: 'https://cdn.activepieces.com/brand/favicon.ico',
-    logoIconUrl: 'https://cdn.activepieces.com/brand/logo.svg',
+    primaryColor: '#000000',
+    websiteName: 'B4AI',
+    fullLogoUrl: '/brand/full-logo.svg',
+    favIconUrl: '/brand/favicon.svg',
+    logoIconUrl: '/brand/logo.svg',
 })
