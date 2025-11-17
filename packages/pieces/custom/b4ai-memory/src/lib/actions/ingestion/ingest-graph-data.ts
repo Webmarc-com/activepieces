@@ -101,9 +101,8 @@ export const ingestGraphData = createAction({
 
     // Return detailed response
     return {
-      success: true,
       ...response,
-      message: `Successfully ingested ${response.summary.nodesCreated} nodes and ${response.summary.relationshipsCreated} relationships${response.summary.totalErrors > 0 ? ` (${response.summary.totalErrors} errors)` : ''}`,
+      message: `Successfully ingested ${response.phase1.nodesCreated} nodes and ${response.phase2.relationshipsCreated} relationships${response.errors.length > 0 ? ` (${response.errors.length} errors)` : ''}`,
     };
   },
 });
