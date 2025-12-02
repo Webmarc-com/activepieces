@@ -408,3 +408,88 @@ export interface ApiResponse<T = any> {
   message?: string;
   data?: T;
 }
+
+// Graph Ingestion Models (LLM-Optimized)
+export interface GraphIngestNode {
+  type: string; // Human-readable type name (e.g., "Consultant")
+  id: string; // Temporary ID for cross-referencing (e.g., "maria")
+  properties: globalThis.Record<string, any>;
+}
+
+export interface GraphIngestRelationship {
+  type: string; // Human-readable relationship type name (e.g., "WORKED_AT")
+  from: string; // Temporary ID of source node
+  to: string; // Temporary ID of target node
+  properties?: globalThis.Record<string, any>;
+}
+
+export interface GraphIngestOptions {
+  enableDeduplication?: boolean;
+  returnCreatedIds?: boolean;
+}
+
+export interface GraphIngestRequest {
+  nodes: GraphIngestNode[];
+  relationships?: GraphIngestRelationship[];
+  options?: GraphIngestOptions;
+}
+
+export interface GraphIngestItemResult {
+  success: boolean;
+  tempId?: string;
+  databaseId?: string | number;
+  error?: string;
+}
+
+export interface GraphIngestPhaseResult {
+  total: number;
+  successful: number;
+  failed: number;
+  items: GraphIngestItemResult[];
+}
+
+// Actual API response types
+export interface GraphIngestNodeResult {
+  tempId: string;
+  databaseId: number;
+  type: string;
+  status: 'created' | 'skipped' | 'failed';
+  error?: string;
+}
+
+export interface GraphIngestRelationshipResult {
+  from: string;
+  to: string;
+  type: string;
+  status: 'created' | 'failed';
+  error?: string;
+}
+
+export interface GraphIngestPhase1Result {
+  nodesCreated: number;
+  nodesSkipped: number;
+  nodesFailed: number;
+  nodes: GraphIngestNodeResult[];
+}
+
+export interface GraphIngestPhase2Result {
+  relationshipsCreated: number;
+  relationshipsFailed: number;
+  relationships: GraphIngestRelationshipResult[];
+}
+
+export interface GraphIngestErrorDetail {
+  phase: 'validation' | 'phase1' | 'phase2';
+  type: 'node' | 'relationship';
+  tempId?: string;
+  message: string;
+  details?: string;
+}
+
+export interface GraphIngestResponse {
+  success: boolean;
+  phase1: GraphIngestPhase1Result; // Node creation results
+  phase2: GraphIngestPhase2Result; // Relationship creation results
+  errors: GraphIngestErrorDetail[];
+  idMapping: globalThis.Record<string, number>; // Temp ID -> Database ID
+}
