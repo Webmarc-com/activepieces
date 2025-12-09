@@ -55,7 +55,6 @@ export type ApErrorParams =
     | PieceNotFoundErrorParams
     | PieceTriggerNotFoundErrorParams
     | QuotaExceededParams
-    | ResourceLockedParams
     | FeatureDisabledErrorParams
     | SignUpDisabledParams
     | StepNotFoundErrorParams
@@ -73,6 +72,7 @@ export type ApErrorParams =
     | EmailAlreadyHasActivationKey
     | ProviderProxyConfigNotFoundParams
     | AIProviderModelNotSupportedParams
+    | AIProviderNotSupportedParams
     | AIRequestNotSupportedParams
     | AICreditLimitExceededParams
     | SessionExpiredParams
@@ -105,7 +105,8 @@ export type BaseErrorParams<T, V> = {
 }
 
 export type MemoryIssueParams = BaseErrorParams<ErrorCode.MEMORY_ISSUE, {
-    message?: string
+    standardOutput: string
+    standardError: string
 }>
 
 export type InvitationOnlySignUpParams = BaseErrorParams<
@@ -346,6 +347,7 @@ ErrorCode.VALIDATION,
 export type TriggerUpdateStatusErrorParams = BaseErrorParams<
 ErrorCode.TRIGGER_UPDATE_STATUS,
 {
+    flowId?: FlowId
     flowVersionId?: FlowVersionId
     message?: string
     standardOutput?: string
@@ -385,12 +387,6 @@ ErrorCode.QUOTA_EXCEEDED,
 }
 >
 
-export type ResourceLockedParams = BaseErrorParams<
-ErrorCode.RESOURCE_LOCKED,
-{
-    message: string
-}>
-
 export type ErrorUpdatingSubscriptionParams = BaseErrorParams<
 ErrorCode.ERROR_UPDATING_SUBSCRIPTION,
 {
@@ -406,6 +402,10 @@ ErrorCode.PROVIDER_PROXY_CONFIG_NOT_FOUND_FOR_PROVIDER,
 export type AIProviderModelNotSupportedParams = BaseErrorParams<ErrorCode.AI_MODEL_NOT_SUPPORTED, {
     provider: string
     model: string
+}>
+
+export type AIProviderNotSupportedParams = BaseErrorParams<ErrorCode.AI_PROVIDER_NOT_SUPPORTED, {
+    provider: string
 }>
 
 export type AIRequestNotSupportedParams = BaseErrorParams<ErrorCode.AI_REQUEST_NOT_SUPPORTED, {
@@ -502,6 +502,7 @@ export enum ErrorCode {
     AUTHORIZATION = 'AUTHORIZATION',
     PROVIDER_PROXY_CONFIG_NOT_FOUND_FOR_PROVIDER = 'PROVIDER_PROXY_CONFIG_NOT_FOUND_FOR_PROVIDER',
     AI_MODEL_NOT_SUPPORTED = 'AI_MODEL_NOT_SUPPORTED',
+    AI_PROVIDER_NOT_SUPPORTED = 'AI_PROVIDER_NOT_SUPPORTED',
     AI_REQUEST_NOT_SUPPORTED = 'AI_REQUEST_NOT_SUPPORTED',
     CONFIG_NOT_FOUND = 'CONFIG_NOT_FOUND',
     DOMAIN_NOT_ALLOWED = 'DOMAIN_NOT_ALLOWED',
@@ -540,7 +541,6 @@ export enum ErrorCode {
     PIECE_NOT_FOUND = 'PIECE_NOT_FOUND',
     PIECE_TRIGGER_NOT_FOUND = 'PIECE_TRIGGER_NOT_FOUND',
     QUOTA_EXCEEDED = 'QUOTA_EXCEEDED',
-    RESOURCE_LOCKED = 'RESOURCE_LOCKED',
     FEATURE_DISABLED = 'FEATURE_DISABLED',
     AI_CREDIT_LIMIT_EXCEEDED = 'AI_CREDIT_LIMIT_EXCEEDED',
     SIGN_UP_DISABLED = 'SIGN_UP_DISABLED',
@@ -562,3 +562,4 @@ export enum ErrorCode {
     SUBFLOW_FAILED = 'SUBFLOW_FAILED',
     DOES_NOT_MEET_BUSINESS_REQUIREMENTS = 'DOES_NOT_MEET_BUSINESS_REQUIREMENTS',
 }
+

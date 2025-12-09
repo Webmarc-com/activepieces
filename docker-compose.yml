@@ -1,10 +1,6 @@
-version: '3.0'
 services:
   activepieces:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: activepieces-b4ai:latest
+    image: ghcr.io/activepieces/activepieces:0.72.4
     container_name: activepieces
     restart: unless-stopped
     ## Enable the following line if you already use AP_EXECUTION_MODE with SANDBOX_PROCESS or old activepieces, checking the breaking change documentation for more info.

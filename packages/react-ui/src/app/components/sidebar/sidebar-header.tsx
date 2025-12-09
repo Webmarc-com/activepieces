@@ -2,7 +2,9 @@ import { useEmbedding } from '@/components/embed-provider';
 import {
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from '@/components/ui/sidebar-shadcn';
 import { ProjectSwitcher } from '@/features/projects/components/project-switcher';
 import { flagsHooks } from '@/hooks/flags-hooks';
@@ -15,7 +17,7 @@ export const AppSidebarHeader = () => {
     edition !== ApEdition.COMMUNITY && !embedState.isEmbedded;
 
   return (
-    <SidebarHeader>
+    <SidebarHeader className="relative" onClick={(e) => e.stopPropagation()}>
       <SidebarMenu>
         {showSwitcher && (
           <SidebarMenuItem>
