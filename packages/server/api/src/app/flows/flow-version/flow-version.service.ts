@@ -29,7 +29,7 @@ import { EntityManager, FindOneOptions } from 'typeorm'
 import { repoFactory } from '../../core/db/repo-factory'
 import { buildPaginator } from '../../helper/pagination/build-paginator'
 import { paginationHelper } from '../../helper/pagination/pagination-utils'
-import { pieceMetadataService } from '../../pieces/piece-metadata-service'
+import { pieceMetadataService } from '../../pieces/metadata/piece-metadata-service'
 import { projectService } from '../../project/project-service'
 import { userService } from '../../user/user-service'
 import { sampleDataService } from '../step-run/sample-data.service'
@@ -152,11 +152,6 @@ export const flowVersionService = (log: FastifyBaseLogger) => ({
                 log,
             )
         }
-
-        await flowVersionSideEffects(log).postApplyOperation({
-            flowVersion: mutatedFlowVersion,
-            operation: userOperation,
-        })
 
         mutatedFlowVersion.updated = dayjs().toISOString()
         if (userId) {
@@ -364,10 +359,6 @@ async function applySingleOperation(
     })
     const preparedOperation = await flowVersionValidationUtil(log).prepareRequest(projectId, platformId, operation)
     const updatedFlowVersion = flowOperations.apply(flowVersion, preparedOperation)
-    await flowVersionSideEffects(log).postApplyOperation({
-        flowVersion: updatedFlowVersion,
-        operation: preparedOperation,
-    })
     return updatedFlowVersion
 }
 
