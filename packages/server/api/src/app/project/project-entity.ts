@@ -1,8 +1,8 @@
-import { AIUsage } from '@activepieces/common-ai'
 import {
     AppConnection,
     Cell,
     Field,
+    File,
     Flow,
     Folder,
     Platform,
@@ -34,7 +34,6 @@ type ProjectSchema = Project & {
     records: Record[]
     cells: Cell[]
     tableWebhooks: TableWebhook[]
-    aiUsage: AIUsage[]
 }
 
 export const ProjectEntity = new EntitySchema<ProjectSchema>({
@@ -50,6 +49,10 @@ export const ProjectEntity = new EntitySchema<ProjectSchema>({
         displayName: {
             type: String,
         },
+        type: {
+            type: String,
+            nullable: false,
+        },
         platformId: {
             ...ApIdSchema,
         },
@@ -60,6 +63,10 @@ export const ProjectEntity = new EntitySchema<ProjectSchema>({
         maxConcurrentJobs: {
             type: Number,
             nullable: true,
+        },
+        icon: {
+            type: JSONB_COLUMN_TYPE,
+            nullable: false,
         },
         releasesEnabled: {
             type: Boolean,
@@ -152,11 +159,6 @@ export const ProjectEntity = new EntitySchema<ProjectSchema>({
         tableWebhooks: {
             type: 'one-to-many',
             target: 'table_webhook',
-            inverseSide: 'project',
-        },
-        aiUsage: {
-            type: 'one-to-many',
-            target: 'ai_usage',
             inverseSide: 'project',
         },
     },
