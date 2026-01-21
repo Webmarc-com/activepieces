@@ -5,6 +5,7 @@ import { ApStorage } from './ap-browser-storage';
 const tokenKey = 'token';
 const TOKEN_PARAM = 'token';
 const HIDE_SIDEBAR_PARAM = 'hideSidebar';
+const INITIAL_ROUTE_KEY = 'embed_initial_route';
 
 /**
  * Handles token authentication from URL query parameters.
@@ -17,7 +18,8 @@ const HIDE_SIDEBAR_PARAM = 'hideSidebar';
  * 1. Check if ?token=xxx exists in URL
  * 2. Validate it's a valid, non-expired JWT
  * 3. Store it in sessionStorage (for embedded mode)
- * 4. Remove sensitive params from URL to avoid exposure
+ * 4. Save the initial route for navigation after auth
+ * 5. Remove sensitive params from URL to avoid exposure
  */
 export function handleUrlToken(): boolean {
   const urlParams = new URLSearchParams(window.location.search);
@@ -40,6 +42,14 @@ export function handleUrlToken(): boolean {
 
   // Store the token
   ApStorage.getInstance().setItem(tokenKey, token);
+
+  // Save the initial route (pathname) for memoryRouter navigation
+  // This is crucial because memoryRouter doesn't read the browser URL
+  const initialRoute = window.location.pathname;
+  if (initialRoute && initialRoute !== '/') {
+    sessionStorage.setItem(INITIAL_ROUTE_KEY, initialRoute);
+    console.log('[URL Token Handler] Saved initial route:', initialRoute);
+  }
 
   // Dispatch storage event to notify other components
   window.dispatchEvent(new Event('storage'));
@@ -95,4 +105,18 @@ function cleanUrlParams(): void {
 export function hasUrlToken(): boolean {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.has(TOKEN_PARAM);
+}
+
+/**
+ * Get and consume the initial route saved during URL token auth.
+ * This is used by the router to navigate to the correct page after auth.
+ * Returns null if no route was saved.
+ */
+export function getAndClearInitialRoute(): string | null {
+  const route = sessionStorage.getItem(INITIAL_ROUTE_KEY);
+  if (route) {
+    sessionStorage.removeItem(INITIAL_ROUTE_KEY);
+    console.log('[URL Token Handler] Consuming initial route:', route);
+  }
+  return route;
 }

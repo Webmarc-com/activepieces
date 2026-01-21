@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Navigate,
   RouterProvider,
@@ -22,6 +23,7 @@ import { VerifyEmail } from '@/features/authentication/components/verify-email';
 import { Error } from '@/features/billing/components/error';
 import { Success } from '@/features/billing/components/success';
 import { AcceptInvitation } from '@/features/members/component/accept-invitation';
+import { getAndClearInitialRoute } from '@/lib/url-token-handler';
 import { routesThatRequireProjectId } from '@/lib/utils';
 import { Permission } from '@activepieces/shared';
 
@@ -592,6 +594,19 @@ const browserRouter = createBrowserRouter(routes);
 const ApRouter = () => {
   const { embedState } = useEmbedding();
   const router = embedState.isEmbedded ? memoryRouter : browserRouter;
+
+  // Navigate to initial route when embedded (from URL token auth)
+  // This is necessary because memoryRouter doesn't read browser URL
+  useEffect(() => {
+    if (embedState.isEmbedded) {
+      const initialRoute = getAndClearInitialRoute();
+      if (initialRoute) {
+        console.log('[ApRouter] Navigating to initial route:', initialRoute);
+        memoryRouter.navigate(initialRoute);
+      }
+    }
+  }, [embedState.isEmbedded]);
+
   return <RouterProvider router={router}></RouterProvider>;
 };
 
