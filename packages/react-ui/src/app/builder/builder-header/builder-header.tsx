@@ -76,6 +76,11 @@ export const BuilderHeader = () => {
 
   const { embedState } = useEmbedding();
 
+  // Hide entire header in embed mode
+  if (embedState.hidePageHeader) {
+    return null;
+  }
+
   const { data: folderData } = foldersHooks.useFolder(
     flow.folderId ?? UncategorizedFolderId,
   );
