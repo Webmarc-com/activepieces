@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useBuilderStateContext } from '@/app/builder/builder-hooks';
+import { useEmbedCommands } from '@/app/builder/hooks/use-embed-commands';
 import { FlowStatusToggle } from '@/features/flows/components/flow-status-toggle';
 import { FlowVersionStateDot } from '@/features/flows/components/flow-version-state-dot';
 import { FlowVersionState } from '@activepieces/shared';
@@ -12,6 +13,9 @@ const BuilderFlowStatusSection = React.memo(() => {
     state.flowVersion,
     state.flow,
   ]);
+
+  // Listen for publish commands from parent (Surfsite) when embedded
+  useEmbedCommands();
 
   return (
     <>

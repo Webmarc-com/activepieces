@@ -76,7 +76,7 @@ export const BuilderHeader = () => {
 
   const { embedState } = useEmbedding();
 
-  // Hide entire header in embed mode
+  // Hide entire header in embed mode - Surfsite has its own header
   if (embedState.hidePageHeader) {
     return null;
   }
