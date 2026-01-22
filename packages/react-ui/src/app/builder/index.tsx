@@ -37,6 +37,7 @@ import {
 import { cn, useElementSize } from '../../lib/utils';
 
 import { BuilderHeader } from './builder-header/builder-header';
+import { useEmbedCommands } from './hooks/use-embed-commands';
 import { FlowCanvas } from './flow-canvas';
 import { LEFT_SIDEBAR_ID } from './flow-canvas/utils/consts';
 import { FlowVersionsList } from './flow-versions';
@@ -96,6 +97,9 @@ const BuilderPage = () => {
     ]);
 
   useShowBuilderIsSavingWarningBeforeLeaving();
+
+  // Listen for embed commands from parent window (Surfsite)
+  useEmbedCommands();
 
   const { memorizedSelectedStep, containerKey } = useBuilderStateContext(
     (state) => {
