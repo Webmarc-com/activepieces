@@ -85,6 +85,7 @@ export function useEmbedCommands() {
   // Send current publish state to parent
   const sendPublishState = useCallback(() => {
     if (window.parent !== window) {
+      console.log('[useEmbedCommands] Sending publish state:', { canPublish, isPublishing, isSaving, isPublishedVersion, isValid: flowVersion.valid });
       window.parent.postMessage(
         {
           type: 'SURFSITE_PUBLISH_STATE',
@@ -100,11 +101,22 @@ export function useEmbedCommands() {
     }
   }, [flow.id, canPublish, isPublishing, isSaving, isPublishedVersion, flowVersion.valid]);
 
+  // Check if we're inside an iframe (parent communication possible)
+  const isInIframe = window.parent !== window;
+
   // Listen for commands from parent
   useEffect(() => {
-    if (!embedState.isEmbedded) return;
+    console.log('[useEmbedCommands] Setup effect, isEmbedded:', embedState.isEmbedded, 'isInIframe:', isInIframe);
+
+    // Listen for messages if embedded OR in iframe (to support both modes)
+    if (!embedState.isEmbedded && !isInIframe) {
+      console.log('[useEmbedCommands] Not embedded and not in iframe, skipping message listener');
+      return;
+    }
 
     const handleMessage = (event: MessageEvent) => {
+      console.log('[useEmbedCommands] Received message:', event.data?.type, event.data);
+
       // Handle publish command
       if (event.data?.type === 'SURFSITE_PUBLISH') {
         if (canPublish) {
@@ -139,14 +151,14 @@ export function useEmbedCommands() {
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [embedState.isEmbedded, canPublish, publish, flow.id, isPublishedVersion, flowVersion.valid, isSaving, isPublishing, sendPublishState]);
+  }, [embedState.isEmbedded, isInIframe, canPublish, publish, flow.id, isPublishedVersion, flowVersion.valid, isSaving, isPublishing, sendPublishState]);
 
   // Send state updates to parent when relevant state changes
   useEffect(() => {
-    if (embedState.isEmbedded) {
+    if (embedState.isEmbedded || isInIframe) {
       sendPublishState();
     }
-  }, [embedState.isEmbedded, sendPublishState]);
+  }, [embedState.isEmbedded, isInIframe, sendPublishState]);
 
   return null;
 }
