@@ -38,7 +38,7 @@ export function useEmbedCommands() {
   const isPublishedVersion = flowVersion.id === flow.publishedVersionId;
   const canPublish = isViewingDraft && !isPublishedVersion && flowVersion.valid && !isSaving && !isPublishing;
 
-  const { mutate: publish } = flowHooks.useChangeFlowStatus({
+  const { mutateAsync: publishAsync } = flowHooks.useChangeFlowStatus({
     flowId: flow.id,
     change: 'publish',
     onSuccess: (response: FlowStatusUpdatedResponse) => {
@@ -59,7 +59,14 @@ export function useEmbedCommands() {
         );
       }
     },
-    onError: (error: Error) => {
+    setIsPublishing: setIsPublishing,
+  });
+
+  // Wrapper to handle errors and notify parent
+  const publish = useCallback(async () => {
+    try {
+      await publishAsync();
+    } catch (error) {
       // Notify parent window of error
       if (window.parent !== window) {
         window.parent.postMessage(
@@ -67,14 +74,13 @@ export function useEmbedCommands() {
             type: 'SURFSITE_PUBLISH_RESULT',
             success: false,
             flowId: flow.id,
-            error: error.message,
+            error: error instanceof Error ? error.message : 'Unknown error',
           },
           '*'
         );
       }
-    },
-    setIsPublishing: setIsPublishing,
-  });
+    }
+  }, [publishAsync, flow.id]);
 
   // Send current publish state to parent
   const sendPublishState = useCallback(() => {
